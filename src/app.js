@@ -23,15 +23,24 @@ const app = express()
 // )
 
 
+<<<<<<< HEAD
 app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
  allowedHeaders: ['Content-Type', 'Authorization']}
 ))
+=======
+
+app.use(cors())
+>>>>>>> 41bc9fddff8f376ce8b3c44821e9372cc3ccca5b
 // app.use(cors({
 //   origin: 'https://mycollege-deploy-git-main-nishants-projects-abe79550.vercel.app',
 //   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 //   allowedHeaders: ['Content-Type', 'Authorization']
 // }));
+<<<<<<< HEAD
+=======
+
+>>>>>>> 41bc9fddff8f376ce8b3c44821e9372cc3ccca5b
 app.get("/", (req, res) => {
     app.use(express.static(path.resolve(__dirname, "frontend", "build")));
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
