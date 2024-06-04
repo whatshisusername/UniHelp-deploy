@@ -43,7 +43,8 @@ function Signup() {
 
     console.log(formData)
     // Perform your axios POST request with FormData
-    await axios.post(`${window.location.origin}/api/v1/users/register`, formData)
+    console.log("goining to hit sign up")
+    await axios.post('/api/v1/users/register', formData)
       .then(function (response) {
         console.log(response);
         setresponse(response?.data?.message)
