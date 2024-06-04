@@ -24,7 +24,7 @@ const app = express()
 
 
 app.use(cors({
-  origin: 'https://mycollege-deploy-git-main-nishants-projects-abe79550.vercel.app',
+  origin: process.env.CORS_ORIGIN,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
