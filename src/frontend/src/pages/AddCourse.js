@@ -114,7 +114,6 @@ function AddCourse() {
 
        }
 
-{error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
     <div className="flex items-center justify-center mt-0 mb-0">
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
