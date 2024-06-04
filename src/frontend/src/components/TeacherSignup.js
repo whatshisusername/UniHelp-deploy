@@ -59,7 +59,7 @@ function TeacherSignup() {
       })
       .catch(function (error) {
         // console.log(error.response.data.errors[0]);
-        setError(error?.response?.data?.errors[0])
+        setError(error)
         setresponse('')
       });
   }
