@@ -69,8 +69,9 @@ const registerUser = asyncHandler(async (req,res)=>{
     if (userrole===""){
         return res.status(404).json(new ApiError(404,"user-role is required",['user-role is required']))
     }
+    console.log(email);
     // validate email have @ 
-    const emailregex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailregex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
     if (emailregex.test(email)===false){
         return res.status(404).json(new ApiError(404,"email isss invalid",['email isss invalid']));
         
