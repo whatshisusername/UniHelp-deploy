@@ -14,7 +14,6 @@ const router = Router()
 // router to register user 
 // upload.files is multer middleware that will adding 2 files into our req
 router.route("/register").post(
-    upload.single('avatar'),
     registerUser
     )
 

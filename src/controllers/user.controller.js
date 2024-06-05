@@ -104,24 +104,24 @@ const registerUser = asyncHandler(async (req,res)=>{
 
     // this is given by multer
     // console.log(req.files)
-    const avatarLocalPath=req.file.path;
+    // const avatarLocalPath=req.file.path;
 
     
 
-    if (!avatarLocalPath){
-        return res.status(404).json(new ApiError(400,"avatar is required",["avatar is required"]));
-    }
+    // if (!avatarLocalPath){
+    //     return res.status(404).json(new ApiError(400,"avatar is required",["avatar is required"]));
+    // }
 
     // upload on cloudinary
 
-     const avatarCloudinaryPath = await uploadOnCloudinary(avatarLocalPath);
+    //  const avatarCloudinaryPath = await uploadOnCloudinary(avatarLocalPath);
     
 
-    //  console.log(avatarCloudinaryPath)
+    // //  console.log(avatarCloudinaryPath)
 
-     if (!avatarCloudinaryPath){
-        return res.status(404).json(new ApiError(400,"avatar is required",["avatar is required"]));
-     }
+    //  if (!avatarCloudinaryPath){
+    //     return res.status(404).json(new ApiError(400,"avatar is required",["avatar is required"]));
+    //  }
 
     //  add user details to database
 
@@ -133,7 +133,7 @@ const registerUser = asyncHandler(async (req,res)=>{
         branch:branch,
         password,
         userrole:userrole,
-        avatar:avatarCloudinaryPath.url || ""})
+        avatar:""})
 
     // check for user creation in db
     // remove password and  refresh token from response sent by mongodb

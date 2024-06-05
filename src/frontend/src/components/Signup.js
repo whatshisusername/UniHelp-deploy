@@ -39,7 +39,7 @@ function Signup() {
 
     // Append selected files to FormData
     const avatarFile = document.getElementById('avatar').files[0];
-    formData.append('avatar', avatarFile);
+    // formData.append('avatar', avatarFile);
 
     console.log(formData)
     // Perform your axios POST request with FormData
@@ -205,7 +205,7 @@ function Signup() {
 
 
     <label htmlFor="avatar">avatar:</label>
-    <input className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full' type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" required/>
+    <input className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full' type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" />
     <br/>
 
    
