@@ -45,7 +45,9 @@ function Signup() {
     // Perform your axios POST request with FormData
     console.log("going to hit signup")
     console.log("goining to hit sign up")
-    await axios.post('/api/v1/users/register', formData)
+    await axios.post('/api/v1/users/register', formData,{headers: {
+      'Content-Type': 'multipart/form-data',
+    },})
       .then(function (response) {
         console.log(response);
         setresponse(response?.data?.message)
