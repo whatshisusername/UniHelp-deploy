@@ -66,6 +66,7 @@ import eventRouter from './routes/event.routes.js'
 
 
 // so when url is http://localhost:8000/api/v1/users we go to userrouter ie inside user.routes.js
+console.log("user router");
 app.use('/api/v1/users',userRouter)
 
 app.use('/api/v1/courses',courseRouter)

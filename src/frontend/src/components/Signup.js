@@ -43,11 +43,8 @@ function Signup() {
 
     console.log(formData)
     // Perform your axios POST request with FormData
-<<<<<<< HEAD
     console.log("going to hit signup")
-=======
     console.log("goining to hit sign up")
->>>>>>> 296f753ce6b484408b96e7a0e51fe734b93066cd
     await axios.post('/api/v1/users/register', formData)
       .then(function (response) {
         console.log(response);
