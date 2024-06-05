@@ -72,7 +72,7 @@ const registerUser = asyncHandler(async (req,res)=>{
     // validate email have @ 
     const emailregex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailregex.test(email)===false){
-        return res.status(404).json(new ApiError(404,"email s invalid",['email is invalid']));
+        return res.status(404).json(new ApiError(404,"email isss invalid",['email isss invalid']));
         
     }
     if (password===""){
