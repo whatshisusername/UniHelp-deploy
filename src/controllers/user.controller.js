@@ -34,6 +34,7 @@ const registerUser = asyncHandler(async (req,res)=>{
     // remove password and  refresh token from response sent by mongodb
     // return response
 
+    console.log("inside register user");
 
     // get user details from front end ,from body this through express
     const {registrationId,email,fullname,password,semester,branch,userrole}=req.body;
