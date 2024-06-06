@@ -494,7 +494,7 @@ const getEventById = asyncHandler(async (req, res) => {
     .json(new ApiResponse(
         200,
         {listofevents:events},
-        "Event fetched successfully"
+        "Event fetched successfull"
     ))
 })
 
