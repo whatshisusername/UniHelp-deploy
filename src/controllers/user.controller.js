@@ -105,8 +105,13 @@ const registerUser = asyncHandler(async (req,res)=>{
 
     // this is given by multer
     // console.log(req.files)
-    const avatarLocalPath='public/temp/bg.jpg';
 
+
+
+    // const avatarLocalPath=req.file.path;
+    console.log( "localfile=",req.file.path)
+    const avatarLocalPath='public/temp/bg.jpg';
+    console.log("avatarLocalPath",avatarLocalPath)
     
 
     if (!avatarLocalPath){
