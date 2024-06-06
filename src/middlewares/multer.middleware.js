@@ -9,6 +9,8 @@ const storage = multer.diskStorage({
       cb(null, file.originalname)
     }
   })
+
+  console.log("inside multerr")
   
 export const upload = multer({ 
     storage, 
