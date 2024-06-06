@@ -76,7 +76,7 @@ function Login() {
         <p className="mt-2 text-center text-base text-black/60">
             Donot have an account?&nbsp;
             <Link
-                to="/signup"
+                to="/student-signup"
                 className="font-medium text-primary transition-all duration-200 hover:underline"
             >
                 Sign Up
