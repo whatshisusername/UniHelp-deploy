@@ -30,7 +30,7 @@ function MyCourses() {
         seterror('')
       })
       .catch(function (error) {
-        console.log(error?.response?.data?.errors[0]);
+        console.log("error=",error);
         seterror(error?.response?.data?.errors[0])
         setresponse('')
       });}

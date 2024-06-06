@@ -38,6 +38,7 @@ function UpdateAvatar() {
         setError('');
       })
       .catch(function (error) {
+        console.log("error=",error);
         setError(error?.response?.data?.errors[0]);
         setResponse('');
       })

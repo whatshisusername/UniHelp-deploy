@@ -37,7 +37,7 @@ var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
       seterror('')
     })
     .catch(function (error) {
-      console.log(error?.response?.data?.errors[0]);
+      console.log("error=",error);
       seterror(error?.response?.data?.errors[0])
       setresponse('')
     });

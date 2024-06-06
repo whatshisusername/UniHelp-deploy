@@ -24,7 +24,7 @@ const EventsHome = () => {
         setError("");
       })
       .catch(function (error) {
-        console.log(error?.response?.data?.errors[0]);
+        console.log("error=",error);
         setError(error?.response?.data?.errors[0]);
       });
   }, []);
@@ -37,7 +37,7 @@ const EventsHome = () => {
         setError("");
       })
       .catch(function (error) {
-        console.log(error?.response?.data?.errors[0]);
+        console.log("error=",error);
         setError(error?.response?.data?.errors[0]);
       });
   }, [otherEvents]);
@@ -50,7 +50,7 @@ const EventsHome = () => {
         setError("");
       })
       .catch(function (error) {
-        console.log(error?.response?.data?.errors[0]);
+        console.log("error=",error);
         setError(error?.response?.data?.errors[0]);
       });
   }, [allevents]);

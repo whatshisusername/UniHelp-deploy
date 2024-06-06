@@ -61,6 +61,7 @@ function UpdateDetails() {
       })
       .catch(function (error) {
         // console.log(error.response.data.errors[0]);
+        console.log("error=",error);
         setError(error?.response?.data?.errors[0])
         setresponse('')
       });
@@ -173,7 +174,7 @@ function UpdateDetails() {
              
                 
       
-                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+            
                 
             <div class="relative flex flex-col items-center rounded-[20px] w-[700px] max-w-[95%] mx-auto bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3 border-2 mt-16">
             {editing?(<button

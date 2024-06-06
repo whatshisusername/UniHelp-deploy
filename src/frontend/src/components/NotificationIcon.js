@@ -29,8 +29,9 @@ function NotificationIcon() {
         seterror('')
       })
       .catch(function (error) {
-        console.log(error?.response?.data?.errors[0]);
-        seterror(error?.response?.data?.errors[0])
+        console.log("error=",error);
+        if(error?.response?.data?.errors[0]){
+          seterror(error?.response?.data?.errors[0])};
         setresponse('')
       });},10000);
 

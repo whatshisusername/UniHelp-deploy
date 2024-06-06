@@ -29,14 +29,16 @@ function Login() {
         })
           .then(function (response) {
             console.log(response);
-            setresponse(response?.data?.message)
+            setresponse(response?.data?.message|| response?.data?.errors[0]);
             dispatch(authLogin(response?.data?.data?.user));
             navigate("/")
             setError('')
           })
           .catch(function (error) {
             // console.log(error.response.data.errors[0]);
-            setError(error?.response?.data?.errors[0])
+            console.log("error=",error);
+            if(error?.response?.data?.errors[0]){
+            setError(error?.response?.data?.errors[0])};
             setresponse('')
           });
       }
@@ -80,8 +82,10 @@ function Login() {
                 Sign Up
             </Link>
         </p>
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+    
                 {response && <p className="text-green-600 mt-8 text-center">{response}</p>}
+                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+
 
                 <form onSubmit={loginaccout}>
     <label >Registraion Id</label>

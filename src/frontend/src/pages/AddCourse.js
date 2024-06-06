@@ -57,7 +57,9 @@ function AddCourse() {
       })
       .catch(function (error) {
         // console.log(error.response.data.errors[0]);
-        seterror(error)
+        console.log("error=",error);
+        if(error?.response?.data?.errors[0]){
+          seterror(error?.response?.data?.errors[0])};
         setresponse('')
       });
   }
@@ -125,10 +127,8 @@ function AddCourse() {
                 <h2 className="text-center  text-2xl font-bold leading-tight ">AddCourse</h2>
                 
       
-                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-               
         
-
+                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
                 <form onSubmit={addcourse}>
 
                 <label >Course Number</label>

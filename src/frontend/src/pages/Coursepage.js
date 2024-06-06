@@ -139,11 +139,17 @@ export default function PostCard() {
                 // Fetch course details
                 axios.get(`/api/v1/courses/getcourse/${courseId}`)
                     .then(response => {
-                        setresponse(response?.data?.message)
+                       
                         setCourse(response?.data?.data?.course);
+                        setresponse(response?.data?.message)
+                        seterror('');
                     })
                     .catch(error => {
                         console.error("Error fetching course:", error);
+                        if(error?.response?.data?.errors[0]){
+                            seterror(error?.response?.data?.errors[0])};
+                        setresponse('')
+
                     });
             }, [courseId]);
 
@@ -172,12 +178,14 @@ export default function PostCard() {
         axios.delete(`/api/v1/courses/deletecourse/${courseId}`)
             .then(response => {
                 setresponse(response?.data?.message)
+                seterror('')
                 setActiveTab('deletecourse')
                 
                                
             })
             .catch(error => {
                 seterror('Error fetching course. Please try again later.');
+                setresponse('')
                 console.error("Error fetching course:", error);
             });
     };
@@ -198,7 +206,8 @@ export default function PostCard() {
           })
           .catch(function (error) {
             console.log(error?.response?.data?.errors[0]);
-            seterror(error?.response?.data?.errors[0])
+            if(error?.response?.data?.errors[0]){
+                seterror(error?.response?.data?.errors[0])};
             setresponse('')
           });
     }
@@ -218,6 +227,7 @@ export default function PostCard() {
             .catch(error => {
                 seterror('Error fetching course. Please try again later.');
                 console.error("Error fetching course:", error);
+                setresponse('');
             });
     };
 
@@ -229,6 +239,7 @@ export default function PostCard() {
             .catch(error => {
                 seterror('Error fetching students. Please try again later.');
                 console.error("Error fetching students:", error);
+                setresponse('');
             });
     };
 
@@ -241,6 +252,7 @@ export default function PostCard() {
             .catch(error => {
                 seterror('Error removing student. Please try again later.');
                 console.error("Error removing student:", error);
+                setresponse('');
             });
     };
 
@@ -255,8 +267,9 @@ export default function PostCard() {
             seterror('')
           })
           .catch(function (error) {
-            console.log(error.response.data.errors[0]);
-            seterror(error?.response?.data?.errors[0])
+            console.log(error);
+            if(error?.response?.data?.errors[0]){
+                seterror(error?.response?.data?.errors[0])};
             setresponse('')
           });
     }
@@ -269,8 +282,9 @@ export default function PostCard() {
           seterror('')
         })
         .catch(function (error) {
-          console.log(error?.response?.data?.errors[0]);
-          seterror(error?.response?.data?.errors[0])
+            console.log("error=",error);
+            if(error?.response?.data?.errors[0]){
+                seterror(error?.response?.data?.errors[0])};
           setresponse('')
         });
   }
@@ -285,6 +299,7 @@ export default function PostCard() {
             .catch(error => {
                 seterror('Error fetching students. Please try again later.');
                 console.error("Error fetching students:", error);
+                setresponse('');
             });
       
     
@@ -329,6 +344,7 @@ export default function PostCard() {
 
 
        }
+       {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
         <div className="container mx-auto px-4 py-8">
             <div className="flex justify-start mb-4">
                 <button
@@ -527,7 +543,7 @@ export default function PostCard() {
     </div>
 )}
 
-            {error && <p className="text-red-700">{error}</p>}
+
         </div>
         </>
     );

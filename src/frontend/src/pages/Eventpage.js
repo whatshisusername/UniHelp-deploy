@@ -53,7 +53,7 @@ export default function Eventpage() {
                         
                     })
                     .catch(error => {
-                        console.error("Error fetching course:", error);
+                        console.error("Error fetching event:", error);
                     });
     
     console.log(event)
@@ -92,7 +92,6 @@ export default function Eventpage() {
 
        }
 
-            {error && <p className="text-red-700">{error}</p>}
          
 
             <section class="text-gray-700 body-font mt-0 overflow-hidden bg-white">

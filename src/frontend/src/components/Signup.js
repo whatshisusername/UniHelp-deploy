@@ -39,18 +39,16 @@ function Signup() {
 
     // Append selected files to FormData
     const avatarFile = document.getElementById('avatar').files[0];
-    // formData.append('avatar', avatarFile);
+    formData.append('avatar', avatarFile);
 
     console.log(formData)
     // Perform your axios POST request with FormData
     console.log("going to hit signup")
     console.log("goining to hit sign up")
-    await axios.post('/api/v1/users/register', formData,{headers: {
-      'Accept': 'application/json, text/plain, */*',
-    },})
+    await axios.post('/api/v1/users/register', formData)
       .then(function (response) {
         console.log(response);
-        setresponse(response?.data?.message)
+        setresponse(response?.data?.message || response?.data?.errors[0])
         setregistrationid('')
         setemail('')
         setsemester('')
@@ -61,8 +59,10 @@ function Signup() {
         setError('')
       })
       .catch(function (error) {
-        // console.log(error.response.data.errors[0]);
-        setError(error)
+        console.log("error",error?.response?.data?.errors[0]);
+        if(error?.response?.data?.errors[0]){
+          setError(error?.response?.data?.errors[0])};
+        console.log("error=",error);
         setresponse('')
       });
   }
@@ -113,12 +113,14 @@ function Signup() {
 
 
        }
+      
     <div className="flex items-center justify-center mt-0 mb-0">
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
             <div className="mb-2 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">
                     </span>
                 </div>
+              
                <img className='ml-12 justify-center bg-black border-2 border-black w-fit h-fit'src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEzFkpGnI5u_psM1gy5zZQrgHQ5yJeOaY-epvGPVh9Rg&s'/>
                 <h2 className="text-center  text-2xl font-bold leading-tight ">Student's SignUp</h2>
                 
@@ -131,8 +133,9 @@ function Signup() {
                         Log in
                     </Link>
                 </p>
-                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+
                 {response && <p className="text-green-600 mt-8 text-center">{response}</p>}
+                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
                 <form onSubmit={createaccout}>
     <label >Registraion Id</label>
@@ -205,7 +208,7 @@ function Signup() {
 
 
     <label htmlFor="avatar">avatar:</label>
-    <input className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full' type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" />
+    <input className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full' type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" required/>
     <br/>
 
    

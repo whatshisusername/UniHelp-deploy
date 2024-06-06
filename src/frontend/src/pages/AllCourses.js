@@ -31,8 +31,9 @@ function AllCourses() {
         seterror('')
       })
       .catch(function (error) {
-        console.log(error?.response?.data?.errors[0]);
-        seterror(error?.response?.data?.errors[0])
+        console.log("error=",error);
+        if(error?.response?.data?.errors[0]){
+          seterror(error?.response?.data?.errors[0])};
         setresponse('')
       });
 
@@ -53,7 +54,8 @@ function AllCourses() {
     })
     .catch(function (error) {
       console.log(error);
-      seterror(error)
+      if(error?.response?.data?.errors[0]){
+        seterror(error?.response?.data?.errors[0])};
       setresponse('')
     });
   },[semester,branch])
@@ -70,7 +72,8 @@ function AllCourses() {
   })
   .catch(function (error) {
     console.log(error);
-    seterror(error)
+    if(error?.response?.data?.errors[0]){
+      seterror(error?.response?.data?.errors[0])};
     setresponse('')
   });
 },[search])
@@ -162,7 +165,7 @@ function AllCourses() {
   <option value='Textile Engineering'>Textile Engineering</option>
 
   </select>
-
+  {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
         
          {hitsem?(<div className='flex flex-wrap'>
                 {

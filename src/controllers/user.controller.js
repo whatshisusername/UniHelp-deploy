@@ -34,7 +34,6 @@ const registerUser = asyncHandler(async (req,res)=>{
     // remove password and  refresh token from response sent by mongodb
     // return response
 
-    console.log("inside register user");
 
     // get user details from front end ,from body this through express
     const {registrationId,email,fullname,password,semester,branch,userrole}=req.body;
@@ -69,11 +68,10 @@ const registerUser = asyncHandler(async (req,res)=>{
     if (userrole===""){
         return res.status(404).json(new ApiError(404,"user-role is required",['user-role is required']))
     }
-    console.log(email);
     // validate email have @ 
-    const emailregex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    const emailregex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailregex.test(email)===false){
-        return res.status(404).json(new ApiError(404,"email isss invalid",['email isss invalid']));
+        return res.status(404).json(new ApiError(404,"email s invalid",['email is invalid']));
         
     }
     if (password===""){
@@ -105,24 +103,24 @@ const registerUser = asyncHandler(async (req,res)=>{
 
     // this is given by multer
     // console.log(req.files)
-    // const avatarLocalPath=req.file.path;
+    const avatarLocalPath=req.file.path;
 
     
 
-    // if (!avatarLocalPath){
-    //     return res.status(404).json(new ApiError(400,"avatar is required",["avatar is required"]));
-    // }
+    if (!avatarLocalPath){
+        return res.status(404).json(new ApiError(400,"avatar is required",["avatar is required"]));
+    }
 
     // upload on cloudinary
 
-    //  const avatarCloudinaryPath = await uploadOnCloudinary(avatarLocalPath);
+     const avatarCloudinaryPath = await uploadOnCloudinary(avatarLocalPath);
     
 
-    // //  console.log(avatarCloudinaryPath)
+    //  console.log(avatarCloudinaryPath)
 
-    //  if (!avatarCloudinaryPath){
-    //     return res.status(404).json(new ApiError(400,"avatar is required",["avatar is required"]));
-    //  }
+     if (!avatarCloudinaryPath){
+        return res.status(404).json(new ApiError(400,"avatar is required",["avatar is required"]));
+     }
 
     //  add user details to database
 
@@ -134,7 +132,7 @@ const registerUser = asyncHandler(async (req,res)=>{
         branch:branch,
         password,
         userrole:userrole,
-        avatar:""})
+        avatar:avatarCloudinaryPath.url || ""})
 
     // check for user creation in db
     // remove password and  refresh token from response sent by mongodb

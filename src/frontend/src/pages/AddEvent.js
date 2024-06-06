@@ -45,12 +45,17 @@ function AddEvent() {
     await axios.post('/api/v1/events/create-event', formData)
       .then(function (response) {
         console.log(response);
+        seterror('');
         setresponse(response?.data?.message)
         setevent(response?.data?.data?.event)
+        
       })
       .catch(function (error) {
         // console.log(error.response.data.errors[0]);
-        seterror(error?.response?.data?.errors[0])
+        console.log("error=",error);
+
+   if(error?.response?.data?.errors[0]){
+            seterror(error?.response?.data?.errors[0])}
         setresponse('')
       });
   }
@@ -104,6 +109,7 @@ function AddEvent() {
 
 
        }
+          {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
     
     <div className="bg-white shadow p-4 py-8">
    
