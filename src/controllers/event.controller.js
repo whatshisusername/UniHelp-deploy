@@ -9,6 +9,10 @@ import mongoose from 'mongoose'
 
 
 
+
+
+
+
 const createEvent = asyncHandler(async (req,res)=>{
     
 
@@ -254,6 +258,42 @@ const getAllEvents = asyncHandler(async (req, res) => {
 
 const getTodayEvents = asyncHandler(async (req, res) => {
     // Retrieve all courses from the database
+   // Date object initialized as per New Zealand timezone. Returns a datetime string
+let nz_date_string = new Date().toLocaleString("en-US", { timeZone: "Pacific/Chatham" });
+
+// Date object initialized from the above datetime string
+let date_nz = new Date(nz_date_string);
+
+// year as (YYYY) format
+let year1 = date_nz.getFullYear();
+
+// month as (MM) format
+let month1 = ("0" + (date_nz.getMonth() + 1)).slice(-2);
+
+// date as (DD) format
+let date = ("0" + date_nz.getDate()).slice(-2);
+
+// hours as (HH) format
+let hours = ("0" + date_nz.getHours()).slice(-2);
+
+// minutes as (mm) format
+let minutes = ("0" + date_nz.getMinutes()).slice(-2);
+
+// seconds as (ss) format
+let seconds = ("0" + date_nz.getSeconds()).slice(-2);
+
+// date as YYYY-MM-DD format
+let date_yyyy_mm_dd = year1 + "-" + month1 + "-" + date;
+console.log("Date in YYYY-MM-DD format: " + date_yyyy_mm_dd);
+
+// time as hh:mm:ss format
+let time_hh_mm_ss = hours + ":" + minutes + ":" + seconds;
+console.log("Time in hh:mm:ss format: " + time_hh_mm_ss);
+
+// date and time as YYYY-MM-DD hh:mm:ss format
+let date_time = year1 + "-" + month1 + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
+console.log("Date and Time in YYYY-MM-DD hh:mm:ss format: " + date_time);
+    
     const dates= new Date();
     let day=dates.getDate();
     if(day<10){
