@@ -7,7 +7,7 @@ getUserChannelProfile,getWatchHistory,checkuserexists,registerUser2} from '../co
 import multer from 'multer';
 import  {verifyJWT}  from '../middlewares/auth.middleware.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: './uploads' })
 const router = Router()
 
 // when control come to this file from app.js using http://localhost:8000/api/v1/users when /register added we call
