@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import { loginUser, registerUser ,logoutUser,refreshAccessToken,changePassword,
 getCurrentUser,updateAccountDetails,updateUserAvatar,updateUserCoverImage,
-getUserChannelProfile,getWatchHistory,checkuserexists} from '../controllers/user.controller.js';
+getUserChannelProfile,getWatchHistory,checkuserexists,registerUser2} from '../controllers/user.controller.js';
 // this our middleware we use to check on our image files coming from backend
 import { upload } from '../middlewares/multer.middleware.js';
 import  {verifyJWT}  from '../middlewares/auth.middleware.js';
@@ -17,6 +17,10 @@ router.route("/register").post(
     upload.single('avatar'),
     registerUser
     )
+
+router.route("/register2").post(
+        registerUser2
+        )
 
 // route to login user
 router.route("/login").post(loginUser)

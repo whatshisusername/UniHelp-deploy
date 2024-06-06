@@ -37,15 +37,15 @@ function Signup() {
     formData.append('branch', branch===''?"Computer Engineering":branch);
     formData.append('userrole', 2);
 
-    // Append selected files to FormData
-    const avatarFile = document.getElementById('avatar').files[0];
-    formData.append('avatar', avatarFile);
+    // // Append selected files to FormData
+    // const avatarFile = document.getElementById('avatar').files[0];
+    // formData.append('avatar', avatarFile);
 
     console.log(formData)
     // Perform your axios POST request with FormData
     console.log("going to hit signup")
     console.log("goining to hit sign up")
-    await axios.post('/api/v1/users/register', formData)
+    await axios.post('/api/v1/users/register2', formData)
       .then(function (response) {
         console.log(response);
         setresponse(response?.data?.message || response?.data?.errors[0])
@@ -208,7 +208,7 @@ function Signup() {
 
 
     <label htmlFor="avatar">avatar:</label>
-    <input className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full' type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" required/>
+    <input className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full' type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"/>
     <br/>
 
    

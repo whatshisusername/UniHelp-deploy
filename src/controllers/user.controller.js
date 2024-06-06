@@ -158,6 +158,125 @@ const registerUser = asyncHandler(async (req,res)=>{
     
 })
 
+const registerUser2 = asyncHandler(async (req,res)=>{
+    // get user details from front end
+    // validate user details got  from front end
+    //check if user already exists :do this by checking username ,email else donot create user if not unqiue
+    // check if avatar is sent by user and uploaded by multer on our local public/temp folder else ask for details again
+    // if avatar exists add it to cloudinary ,check if successfully added to cloudinary 
+    // create user object add all details in mongodb
+    // check for user creation in db
+    // remove password and  refresh token from response sent by mongodb
+    // return response
+
+
+    // get user details from front end ,from body this through express
+    const {registrationId,email,fullname,password,semester,branch,userrole}=req.body;
+
+    // console.log(req.body)
+    //  validate user details got  from front end
+
+    // must be not empty
+    if (fullname===""){
+        return res.status(404).json(
+            new ApiError(404,"fullname is required",["fullname is required"])
+         )
+    }
+    // must be not empty
+    if (semester===""){
+        return res.status(404).json(
+            new ApiError(404,"semester is required",["semester is required"])
+         )
+    }
+    if (branch===""){
+        return res.status(404).json(
+            new ApiError(404,"branch is required",["branch is required"])
+         )
+    }
+    if (registrationId===""){
+        return res.status(404).json(new ApiError(404,"registrationId is required",['registrationId is required']))
+    }
+    if (email===""){
+        return res.status(404).json(new ApiError(404,"email is required",['email is required']))
+    }
+
+    if (userrole===""){
+        return res.status(404).json(new ApiError(404,"user-role is required",['user-role is required']))
+    }
+    // validate email have @ 
+    const emailregex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailregex.test(email)===false){
+        return res.status(404).json(new ApiError(404,"email s invalid",['email is invalid']));
+        
+    }
+    if (password===""){
+        return res.status(404).json(new ApiError(404,"password is required",["password is required"]));
+    }
+    // validate password check 8 letters,A,a,etc
+    const passwordregex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (passwordregex.test(password)===false){
+        return res.status(404).json(new ApiError(404,"password must be 8 letters,A,a,@",["password must be 8 letters,A,a,@"]));
+        
+    }
+
+
+
+    //check if user already exists :do this by checking username ,email else donot create user if not unqiue
+    // we check this in database where User collection(model) is created which stores all users
+    // checking either user with same username exists or email
+
+    const existuser = await User.findOne({
+        $or:[{email},{registrationId}]}
+    )
+
+    if(existuser){
+        return res.status(404).json(new ApiError(409,"already user exists with same registrationId||email",["already user exists with same registrationId||email"]));
+    }
+
+    
+    // check if avatar is sent by user and uploaded by multer on our local public/temp folder else ask for details again
+
+    
+
+
+
+
+    //  add user details to database
+
+    const user = await User.create({
+        registrationId:registrationId,
+        email,
+        fullname,
+        semester:Number(semester),
+        branch:branch,
+        password,
+        userrole:userrole,
+        avatar:""})
+
+    // check for user creation in db
+    // remove password and  refresh token from response sent by mongodb
+
+    // checking if just added user in database exits or not also if exists remove its password and refreshToken
+    // select method selects all fields of that model "-varibale" from this that variable will be deselected
+    const createduser = await User.findById(user._id).select(
+        "-password -refreshToken"
+    )    
+    if (!createduser){
+
+        return res.status(404).json(new ApiError(500,"something went wrong while adding user to database",["something went wrong while adding user to database"]));
+    }
+
+     // return response
+     return res.status(201).json(
+        new ApiResponse(200,createduser,"user registered successfully")
+     )
+
+
+
+
+    
+})
+
 const checkuserexists = asyncHandler(async(req,res)=>{
 
     const {registrationId}= req.body
@@ -679,5 +798,6 @@ export {registerUser,
     updateUserCoverImage,
     getUserChannelProfile,
     getWatchHistory,
-    checkuserexists
+    checkuserexists,
+    registerUser2,
 };
