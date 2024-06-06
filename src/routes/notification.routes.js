@@ -6,7 +6,7 @@ readnotification
    
 } from "../controllers/notification.controller.js"
 import {verifyJWT} from "../middlewares/auth.middleware.js"
-import {upload} from "../middlewares/multer.middleware.js"
+import {upload} from "../middlewares/multer2.middleware.js"
 
 const router = Router();
 router.use(verifyJWT); // Apply verifyJWT middleware to all routes in this file
