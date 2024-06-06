@@ -11,6 +11,7 @@ const storage = multer.diskStorage({
   })
 
   console.log("inside multerr")
+  console.log(storage);
   
 export const upload = multer({ 
     storage, 

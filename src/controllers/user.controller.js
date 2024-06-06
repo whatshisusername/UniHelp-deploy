@@ -109,9 +109,7 @@ const registerUser = asyncHandler(async (req,res)=>{
 
 
     // const avatarLocalPath=req.file.path;
-    console.log( "localfile=",req.file.path)
-    const avatarLocalPath='public/temp/bg.jpg';
-    console.log("avatarLocalPath",avatarLocalPath)
+    const avatarLocalPath=req.file.path;
     
 
     if (!avatarLocalPath){
