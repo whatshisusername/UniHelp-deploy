@@ -3,11 +3,10 @@ import { loginUser, registerUser ,logoutUser,refreshAccessToken,changePassword,
 getCurrentUser,updateAccountDetails,updateUserAvatar,updateUserCoverImage,
 getUserChannelProfile,getWatchHistory,checkuserexists,registerUser2} from '../controllers/user.controller.js';
 // this our middleware we use to check on our image files coming from backend
-// import { upload } from '../middlewares/multer.middleware.js';
-import multer from 'multer';
+import { upload } from '../middlewares/multer.middleware.js';
 import  {verifyJWT}  from '../middlewares/auth.middleware.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
-const upload = multer({ dest: './uploads' })
+
 const router = Router()
 
 // when control come to this file from app.js using http://localhost:8000/api/v1/users when /register added we call
@@ -20,7 +19,7 @@ router.route("/register").post(
     )
 
 router.route("/register2").post(
-        registerUser
+        registerUser2
         )
 
 // route to login user
