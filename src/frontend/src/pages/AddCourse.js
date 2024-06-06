@@ -34,7 +34,7 @@ function AddCourse() {
     formData.append('coursenumber', coursenumber);
     formData.append('semester', semester===''?1:semester);
     formData.append('branch', branch===''?"Computer Engineering":branch);
-    const thumbnailFile = document.getElementById('thumbnail').files[0];
+    const thumbnailFile = document.getElementById('thumbnail')?.files[0];
     console.log(thumbnailFile)
     formData.append('thumbnail', thumbnailFile);
 
@@ -171,7 +171,7 @@ function AddCourse() {
        
 
         <label htmlFor="thumbnail">Thumbnail:</label>
-    <input className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full' type="file" id="thumbnail" name="thumbnail" accept="image/png, image/jpeg" required/>
+    <input className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full' type="file" id="thumbnail" name="thumbnail" accept="image/png, image/jpeg"/>
     <br/>
       
       
