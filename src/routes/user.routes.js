@@ -3,7 +3,7 @@ import { loginUser, registerUser ,logoutUser,refreshAccessToken,changePassword,
 getCurrentUser,updateAccountDetails,updateUserAvatar,updateUserCoverImage,
 getUserChannelProfile,getWatchHistory,checkuserexists,registerUser2} from '../controllers/user.controller.js';
 // this our middleware we use to check on our image files coming from backend
-import { upload } from '../middlewares/multer.middleware.js';
+import { upload } from '../middlewares/multer2.middleware.js';
 import  {verifyJWT}  from '../middlewares/auth.middleware.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
 
