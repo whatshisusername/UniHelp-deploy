@@ -19,7 +19,7 @@ router.route("/register").post(
     )
 
 router.route("/register2").post(
-        registerUser2
+        registerUser
         )
 
 // route to login user
