@@ -3,13 +3,9 @@ import { loginUser, registerUser ,logoutUser,refreshAccessToken,changePassword,
 getCurrentUser,updateAccountDetails,updateUserAvatar,updateUserCoverImage,
 getUserChannelProfile,getWatchHistory,checkuserexists,registerUser2} from '../controllers/user.controller.js';
 // this our middleware we use to check on our image files coming from backend
-// import { upload } from '../middlewares/multer.middleware.js';
-import multer from 'multer';
+import { upload } from '../middlewares/multer.middleware.js';
 import  {verifyJWT}  from '../middlewares/auth.middleware.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
-
-
-const upload = multer({ dest: '././public/temp' })
 
 const router = Router()
 
