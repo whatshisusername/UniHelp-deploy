@@ -31,19 +31,11 @@ app.use(cors(
 //   allowedHeaders: ['Content-Type', 'Authorization']
 // }));
 
+app.get("/", (req, res) => {
+    app.use(express.static(path.resolve(__dirname, "frontend", "build")));
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
 
-// app.get("/", (req, res) => {
-//     app.use(express.static(path.resolve(__dirname, "frontend", "build")));
-//     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-//   });
-
-// Serve static files from the build folder
-app.use(express.static(path.resolve(__dirname, 'frontend', 'build')));
-
-// Route all requests to the React app's index.html
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-});
 
 
 // this is to configure how much json data will be accepted by server
