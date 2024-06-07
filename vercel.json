@@ -27,7 +27,7 @@
       },
       {
         "src": "/login",
-        "dest": "/"
+        "dest": "src/index.js"
       },
       {
         "src": "/update-account",
