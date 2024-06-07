@@ -36,6 +36,9 @@ app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   });
 
+app.get("/login", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
 
 
 // this is to configure how much json data will be accepted by server
