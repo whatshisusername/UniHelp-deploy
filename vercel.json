@@ -1,5 +1,73 @@
 {
-   "rewrites":  [
-       {"source": "/(.*)", "destination": "/"}
+  
+    "routes": [
+      {
+        "src": "/",
+        "dest": "/"
+      },
+      {
+        "src": "/student-signup",
+        "dest": "/"
+      },
+      {
+        "src": "/teacher-signup",
+        "dest": "/"
+      },
+      {
+        "src": "/login",
+        "dest": "/"
+      },
+      {
+        "src": "/update-account",
+        "dest": "/"
+      },
+      {
+        "src": "/update-avatar",
+        "dest": "/"
+      },
+      {
+        "src": "/all-courses",
+        "dest": "/"
+      },
+      {
+        "src": "/my-courses",
+        "dest": "/"
+      },
+      {
+        "src": "/add-course",
+        "dest": "/"
+      },
+      {
+        "src": "/course/:courseId",
+        "dest": "/"
+      },
+      {
+        "src": "/all-notifications",
+        "dest": "/"
+      },
+      {
+        "src": "/events",
+        "dest": "/"
+      },
+      {
+        "src": "/today-events",
+        "dest": "/"
+      },
+      {
+        "src": "/other-events",
+        "dest": "/"
+      },
+      {
+        "src": "/add-event",
+        "dest": "/"
+      },
+      {
+        "src": "/my-events",
+        "dest": "/"
+      },
+      {
+        "src": "/event/:eventId",
+        "dest": "/"
+      }
     ]
-}
+  }
