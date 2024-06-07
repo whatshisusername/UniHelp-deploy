@@ -17,74 +17,7 @@
                  "dest": "src/index.js"
                },
         
-      {
-        "src": "/",
-        "dest": "/"
-      },
-      {
-        "src": "/student-signup",
-        "dest": "src/frontend/build/index.html"
-      },
-      {
-        "src": "/teacher-signup",
-        "dest": "/"
-      },
-      {
-        "src": "/login",
-        "dest": "https://mycollege-deploy-7v5gqe8eo-nishants-projects-abe79550.vercel.app/login"
-      },
-      {
-        "src": "/update-account",
-        "dest": "/"
-      },
-      {
-        "src": "/update-avatar",
-        "dest": "/"
-      },
-      {
-        "src": "/all-courses",
-        "dest": "/"
-      },
-      {
-        "src": "/my-courses",
-        "dest": "/"
-      },
-      {
-        "src": "/add-course",
-        "dest": "/"
-      },
-      {
-        "src": "/course/:courseId",
-        "dest": "/"
-      },
-      {
-        "src": "/all-notifications",
-        "dest": "/"
-      },
-      {
-        "src": "/events",
-        "dest": "/"
-      },
-      {
-        "src": "/today-events",
-        "dest": "/"
-      },
-      {
-        "src": "/other-events",
-        "dest": "/"
-      },
-      {
-        "src": "/add-event",
-        "dest": "/"
-      },
-      {
-        "src": "/my-events",
-        "dest": "/"
-      },
-      {
-        "src": "/event/:eventId",
-        "dest": "/"
-      },
+      
       {
         "src": "/(.*)",
         "dest": "src/frontend/build/index.html"
