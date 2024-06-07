@@ -259,7 +259,7 @@ const getAllEvents = asyncHandler(async (req, res) => {
 const getTodayEvents = asyncHandler(async (req, res) => {
     // Retrieve all courses from the database
    // Date object initialized as per New Zealand timezone. Returns a datetime string
-let nz_date_string = new Date().toLocaleString("en-US", { timeZone: "Pacific/Chatham" });
+let nz_date_string = new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
 
 // Date object initialized from the above datetime string
 let date_nz = new Date(nz_date_string);
@@ -325,7 +325,7 @@ console.log("Date and Time in YYYY-MM-DD hh:mm:ss format: " + date_time);
 // for other events search event by title
 const searchbytitle = asyncHandler(async(req, res) => {
      // Retrieve all courses from the database
-     let nz_date_string = new Date().toLocaleString("en-US", { timeZone: "Pacific/Chatham" });
+     let nz_date_string = new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
 
 // Date object initialized from the above datetime string
 let date_nz = new Date(nz_date_string);
@@ -404,7 +404,7 @@ console.log("Date and Time in YYYY-MM-DD hh:mm:ss format: " + date_time);
 
 const getOtherEvents = asyncHandler(async (req, res) => {
     // Retrieve all courses from the database
-    let nz_date_string = new Date().toLocaleString("en-US", { timeZone: "Pacific/Chatham" });
+    let nz_date_string = new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
 
 // Date object initialized from the above datetime string
 let date_nz = new Date(nz_date_string);
