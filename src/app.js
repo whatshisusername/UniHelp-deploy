@@ -115,6 +115,8 @@ import courseRouter from './routes/course.routes.js'
 import notificationRouter from './routes/notification.routes.js'
 
 import eventRouter from './routes/event.routes.js'
+
+import notesRouter from './routes/notes.routes.js'
 // route declaration
 
 
@@ -128,7 +130,7 @@ app.use('/api/v1/notifications',notificationRouter)
 
 app.use('/api/v1/events',eventRouter)
 
-
+app.use('/api/v1/notes',notesRouter)
 
 
 export {app}

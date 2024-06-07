@@ -133,6 +133,10 @@ export default function PostCard() {
     const [semester,setsemester]=useState('')
     const [description,setdescription]=useState('')
 
+
+    const [filename,setfilename]=useState("")
+    const [notes,setnotes]=useState([])
+
     const navigate=useNavigate();
 
     useEffect(() => {
@@ -160,6 +164,12 @@ export default function PostCard() {
         } 
         else if (tab === "deletecourse") {
             
+        }
+        else if (tab === "addnotes") {
+            
+        }
+        else if (tab === "notes") {
+            fetchnotes();
         }
         else if (tab === "editcourse") {
             fetchCourse();
@@ -243,6 +253,22 @@ export default function PostCard() {
             });
     };
 
+    const fetchnotes = () => {
+        axios.get(`/api/v1/notes/notesofcourse/${courseId}`)
+            .then(response => {
+                setresponse(response?.data?.data?.message)
+                setnotes(response?.data?.data?.notesofcourse);
+                console.log(response?.data?.data?.notesofcourse[0].filename)
+                seterror('')
+                
+            })
+            .catch(error => {
+                seterror('Error fetching notess. Please try again later.');
+                console.error("Error notes students:", error);
+                setresponse('');
+            });
+    };
+
     const removeStudent = (studentId) => {
         axios.patch(`/api/v1/courses/removestudent/${courseId}/${studentId}`)
             .then(response => {
@@ -309,6 +335,10 @@ export default function PostCard() {
         {
             navigate('/my-courses')
         }
+        else if (response ==="notes added successfully")
+            {
+                setActiveTab('notes')
+            }
         setresponse('')
       };
 
@@ -316,6 +346,43 @@ export default function PostCard() {
         seterror('')
       };
        console.log("joined=",joined)
+
+
+
+
+       const createnotes= async(e)=>{
+        e.preventDefault(); // Prevent default form submission
+    
+        // Create FormData object to send form data including files
+        const formData = new FormData();
+        formData.append('filename', filename);
+        
+    
+        // // Append selected files to FormData
+        const notesfile = document.getElementById('file').files[0];
+        formData.append('notesfile', notesfile );
+    
+        console.log(formData)
+        // Perform your axios POST request with FormData
+        console.log("going to hit notes")
+        console.log("goining to hit notes")
+        await axios.post(`/api/v1/notes/create-notes/${courseId}`, formData)
+          .then(function (response) {
+            console.log(response);
+            setresponse(response?.data?.message || response?.data?.errors[0])
+            setfilename('')
+           
+    
+            seterror('')
+          })
+          .catch(function (error) {
+            console.log("error",error);
+            if(error?.response?.data?.errors[0]){
+              seterror(error?.response?.data?.errors[0])};
+            console.log("error=",error);
+            setresponse('')
+          });
+      }
 
 
 
@@ -363,6 +430,26 @@ export default function PostCard() {
                 >
                     Enrolled
                 </button>
+                <button
+                    className={`${
+                        activeTab === "notes" ? "bg-blue-500" : "bg-gray-300"
+                    } text-white px-4 py-2 rounded-md  `}
+                    onClick={() => handleTabChange("notes")}
+                >
+                    Notes
+                </button>
+                {
+                    (course?.owner===userData?._id && userData.userrole===1)&& 
+                    <button
+                    className={`${
+                        activeTab === "addnotes" ? "bg-blue-500" : "bg-gray-300"
+                    } text-white px-4 py-2 rounded-md  `}
+                    onClick={() => handleTabChange("addnotes")}
+      
+                >
+                    Add Notes
+                </button>
+                }
                 {
                     (course?.owner===userData?._id)&& 
                     <button
@@ -512,6 +599,23 @@ export default function PostCard() {
         
             )}
 
+{activeTab === "addnotes" && userData?._id===course.owner && userData.userrole===1 && (
+                <div>
+                    <form onSubmit={createnotes}>
+                  <label >File Name</label>
+                  <input className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full' type='text' placeholder='Enter file name' value={filename} onChange={(e)=>{setfilename(e.target.value)}} required></input>
+                  <br/>
+                  <label htmlFor="file">File:</label>
+    <input className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full' type="file" id="file" name="file"  required/>
+    <br/>
+    <button className="bg-gray-50 hover:bg-gray-50 text-black font-bold py-2 px-4 border border-blue-700 rounded ml-40 mt-1">Submit
+</button>
+
+    
+    </form>
+                </div>
+            )}
+
 
 
 
@@ -536,8 +640,36 @@ export default function PostCard() {
                         ))}
                     </ul>
                 ) : (
-                    <p>No students enrolled.</p>
+                    <p>No students enrolleed.</p>
                 )}
+
+            </div>
+        </div>
+    </div>
+)}
+
+
+{activeTab === "notes" &&  (
+    <div>
+        <span className="block mb-4">Course: {course.title}</span>
+        <div className="bg-white rounded-md overflow-hidden">
+            <h2 className="text-lg font-bold px-4 py-2 bg-blue-500 text-white">Material:{notes.length}</h2>
+            <div className="p-4">
+                {notes.length > 0 ? (
+                    <ul>
+                        {notes.map((note) => (
+                            <li key={note._id} className="flex justify-between items-center py-2 border-b">
+                                <div>
+                                    <p className="text-lg">{note.filename}-<a href={note.notesfile} target="_blank" className="text-blue-500">{note.notesfile}</a></p>
+                                </div>
+                                
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No notes yet.</p>
+                )}
+
             </div>
         </div>
     </div>
