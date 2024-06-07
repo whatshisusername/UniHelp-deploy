@@ -2,7 +2,7 @@
   "version": 2,
     "builds": [
       {
-        "src": "src/app.js",
+        "src": "src/index.js",
         "use": "@vercel/node"
       }
     ],
@@ -10,7 +10,7 @@
     "routes": [
       {
                "src": "/(.*)",
-                 "dest": "src/app.js"
+                 "dest": "src/index.js"
                },
         
       {
@@ -19,7 +19,7 @@
       },
       {
         "src": "/student-signup",
-        "dest": "/"
+        "dest": "/src/frontend/src/components/Signup.js"
       },
       {
         "src": "/teacher-signup",
@@ -27,7 +27,7 @@
       },
       {
         "src": "/login",
-        "dest": "/"
+        "dest": "src/index.js"
       },
       {
         "src": "/update-account",
