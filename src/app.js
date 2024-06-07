@@ -31,8 +31,8 @@ app.use(cors(
 //   allowedHeaders: ['Content-Type', 'Authorization']
 // }));
 
+app.use(express.static(path.resolve(__dirname, "frontend", "build")));
 app.get("*", (req, res) => {
-    app.use(express.static(path.resolve(__dirname, "frontend", "build")));
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   });
 
