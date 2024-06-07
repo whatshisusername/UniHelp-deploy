@@ -19,7 +19,7 @@
       },
       {
         "src": "/student-signup",
-        "dest": "/src/frontend/src/components/Signup.js"
+        "dest": "/src/frontend/build/index.html"
       },
       {
         "src": "/teacher-signup",
