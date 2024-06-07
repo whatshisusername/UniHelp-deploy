@@ -27,7 +27,7 @@
       },
       {
         "src": "/login",
-        "dest": "src/index.js"
+        "dest": "https://mycollege-deploy-7v5gqe8eo-nishants-projects-abe79550.vercel.app/login"
       },
       {
         "src": "/update-account",
