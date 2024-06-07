@@ -23,7 +23,7 @@
       },
       {
         "src": "/student-signup",
-        "dest": "/src/frontend/build/index.html"
+        "dest": "src/frontend/build/index.html"
       },
       {
         "src": "/teacher-signup",
