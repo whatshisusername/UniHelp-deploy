@@ -93,6 +93,7 @@ app.get("/student-signup", (req, res) => {
 
 
 // this is to configure how much json data will be accepted by server
+// do it
 app.use(express.json({limit: "16kb"}))
 
 // as we open google .com and search something that appears on the url like google.com+Nishant this + is encoding
