@@ -251,6 +251,7 @@ const getAllEvents = asyncHandler(async (req, res) => {
 
  }  
 
+//  do it
 
     console.log(listofevents,"kjj");
     return res.status(200).json(new ApiResponse(200, {listofevents:events}, "List of events all fetched successfully"));
