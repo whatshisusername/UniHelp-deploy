@@ -649,7 +649,7 @@ export default function PostCard() {
 )}
 
 
-{activeTab === "notes" &&  (
+{activeTab === "notes" && (joined===true || userData?._id===course.owner || userData.userrole===1) (
     <div>
         <span className="block mb-4">Course: {course.title}</span>
         <div className="bg-white rounded-md overflow-hidden">
@@ -667,7 +667,7 @@ export default function PostCard() {
                         ))}
                     </ul>
                 ) : (
-                    <p>No notes yet.</p>
+                    <p>Join course to get notes</p>
                 )}
 
             </div>
