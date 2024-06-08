@@ -10,7 +10,7 @@ import {uploadOnCloudinary} from "../utils/cloudinary.js"
 
 const fetchnotification = asyncHandler(async (req, res) => {
 
-    const listofnotifications = await Notification.find({to:req.user._id}).sort({'updatedAt':1 })
+    const listofnotifications = await Notification.find({to:req.user._id}).sort({'updatedAt':-1 })
    
 
     
