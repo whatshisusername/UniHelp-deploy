@@ -7,7 +7,7 @@ import {upload} from "../middlewares/multer2.middleware.js"
 const router = Router();
 router.use(verifyJWT); // Apply verifyJWT middleware to all routes in this file
 
-
+// do it
 router.route("/create-notes/:courseId").post(
     upload.single('notesfile'),
     createnotes
