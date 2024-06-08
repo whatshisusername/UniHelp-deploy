@@ -1,7 +1,7 @@
 import mongoose, {Schema} from "mongoose";
 
 const notesSchema = new Schema({
-   
+//    name of file
     filename: {
         type: String,
         required:true
