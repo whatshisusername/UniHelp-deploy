@@ -16,159 +16,109 @@ const getAllCourses = asyncHandler(async (req, res) => {
     return res.status(200).json(new ApiResponse(200, {listofcourses:listofcourses}, "List of courses fetched successfully"));
 });
 
-// const createACourse = asyncHandler(async (req, res) => {
-//     const {coursenumber,semester,branch,title, description} = req.body
-//     // TODO: get video, upload to cloudinary, create video
-//     // see current logged in user will be uploading video to its channel
-//     // so it will give videos title,description,ispublished using form  in req.body
-//     // owner of video will current logged in user as this will pass through jwt we get user from req.user.
+const createACourse = asyncHandler(async (req, res) => {
+    const {coursenumber,semester,branch,title, description} = req.body
+    // TODO: get video, upload to cloudinary, create video
+    // see current logged in user will be uploading video to its channel
+    // so it will give videos title,description,ispublished using form  in req.body
+    // owner of video will current logged in user as this will pass through jwt we get user from req.user.
 
 
-//     // checking if title,desc is empty.
-//      // must be not empty
-//      if (title===""){
-//         return res.status(404).json(new ApiError(404,"title is required",['title is required']))
-//     }
-//     if (coursenumber===""){
-//         return res.status(404).json(new ApiError(404,"coursenumber is required",['coursenumber is required']))
-//     }
-//     if (semester===""){
-//         return res.status(404).json(new ApiError(404,"semester is required",['semester is required']))
-//     }
-//     if (branch===""){
-//         return res.status(404).json(new ApiError(404,"branch is required",['branch is required']))
-//     }
-//     if (description===""){
-//         return res.status(404).json(new ApiError(404,"description is required",['description is required']))
-//     }
+    // checking if title,desc is empty.
+     // must be not empty
+     if (title===""){
+        return res.status(404).json(new ApiError(404,"title is required",['title is required']))
+    }
+    if (coursenumber===""){
+        return res.status(404).json(new ApiError(404,"coursenumber is required",['coursenumber is required']))
+    }
+    if (semester===""){
+        return res.status(404).json(new ApiError(404,"semester is required",['semester is required']))
+    }
+    if (branch===""){
+        return res.status(404).json(new ApiError(404,"branch is required",['branch is required']))
+    }
+    if (description===""){
+        return res.status(404).json(new ApiError(404,"description is required",['description is required']))
+    }
 
 
-//     const thumbnailLocalPath=req.file.path;
+    const thumbnailLocalPath=req.file.path;
 
     
 
-//     if (!thumbnailLocalPath){
-//         return res.status(404).json(new ApiError(400,"thumbnail is required",["thumbnail is required"]));
-//     }
+    if (!thumbnailLocalPath){
+        return res.status(404).json(new ApiError(400,"thumbnail is required",["thumbnail is required"]));
+    }
 
    
   
-//     const thumbnailCloudinaryPath = await uploadOnCloudinary(thumbnailLocalPath);
+    const thumbnailCloudinaryPath = await uploadOnCloudinary(thumbnailLocalPath);
 
    
 
-//     if (!thumbnailCloudinaryPath){
-//         return res.status(404).json(new ApiError(501,"error uploading coursethumbnail on cloudinary",["error uploading coursethumbnail on cloudinary"]))
-//     }
+    if (!thumbnailCloudinaryPath){
+        return res.status(404).json(new ApiError(501,"error uploading coursethumbnail on cloudinary",["error uploading coursethumbnail on cloudinary"]))
+    }
 
     
-//     // now we have title,desc,ispublished,videofile url,thumbnail url
-//     // and also owner ie current logged in user so make a database entry
+    // now we have title,desc,ispublished,videofile url,thumbnail url
+    // and also owner ie current logged in user so make a database entry
 
 
-//      //  add video details in Video model  to database
+     //  add video details in Video model  to database
      
-//      const course = await Course.create({
-//         title:title,
-//         description:description,
-//         branch:branch,
-//         semester:semester,
-//         coursenumber:coursenumber,
-//         thumbnail:thumbnailCloudinaryPath.url,
-//         owner:req.user._id
+     const course = await Course.create({
+        title:title,
+        description:description,
+        branch:branch,
+        semester:semester,
+        coursenumber:coursenumber,
+        thumbnail:thumbnailCloudinaryPath.url,
+        owner:req.user._id
 
-//      })
+     })
 
-//     // checking if video entry made in Video collection or not
-//     const createdcourse = await Course.findById(course._id)
-//     if (!createdcourse){
+    // checking if video entry made in Video collection or not
+    const createdcourse = await Course.findById(course._id)
+    if (!createdcourse){
 
-//         return res.status(500).json(new ApiError(500,"something went wrong while adding course to database",["something went wrong while adding course to database"]))
-//     }
-
-
-
-//     const owner= await User.findById(createdcourse.owner)
+        return res.status(500).json(new ApiError(500,"something went wrong while adding course to database",["something went wrong while adding course to database"]))
+    }
 
 
-//     const content = "Prof. "+owner.fullname+" added new course "+createdcourse.title;
 
-//     const listofstudents = await User.find({userrole:2})
+    const owner= await User.findById(createdcourse.owner)
 
-//     for(var i=0; i< listofstudents.length; i++) {  
-//         const notification = await Notification.create({
-//             content:content,
+
+    const content = "Prof. "+owner.fullname+" added new course "+createdcourse.title;
+
+    const listofstudents = await User.find({userrole:2})
+
+    for(var i=0; i< listofstudents.length; i++) {  
+        const notification = await Notification.create({
+            content:content,
     
-//          })
-//          await Notification.updateOne({ _id: notification._id }, { $push: { from: createdcourse.owner } })
-//      await Notification.updateOne({ _id: notification._id }, { $push: { to: listofstudents[i]._id } })
+         })
+         await Notification.updateOne({ _id: notification._id }, { $push: { from: createdcourse.owner } })
+     await Notification.updateOne({ _id: notification._id }, { $push: { to: listofstudents[i]._id } })
             
          
                 
             
-//         }
+        }
 
 
 
-//      // return response
-//      return res.status(201).json(
-//         new ApiResponse(200,{course:createdcourse},"course added successfully")
-//      )
+     // return response
+     return res.status(201).json(
+        new ApiResponse(200,{course:createdcourse},"course added successfully")
+     )
 
     
    
 
-// })
-
-const createACourse = asyncHandler(async (req, res) => {
-    const { coursenumber, semester, branch, title, description } = req.body;
-
-    if (!title || !coursenumber || !semester || !branch || !description) {
-        return res.status(404).json(new ApiError(404, "All fields are required", ['All fields are required']));
-    }
-
-    const thumbnailLocalPath = req.file?.path;
-    if (!thumbnailLocalPath) {
-        return res.status(400).json(new ApiError(400, "Thumbnail is required", ["Thumbnail is required"]));
-    }
-
-    const thumbnailCloudinaryPath = await uploadOnCloudinary(thumbnailLocalPath);
-    if (!thumbnailCloudinaryPath) {
-        return res.status(501).json(new ApiError(501, "Error uploading course thumbnail on cloudinary", ["Error uploading course thumbnail on cloudinary"]));
-    }
-
-    const course = await Course.create({
-        title,
-        description,
-        branch,
-        semester,
-        coursenumber,
-        thumbnail: thumbnailCloudinaryPath.url,
-        owner: req.user._id
-    });
-
-    const createdCourse = await Course.findById(course._id);
-    if (!createdCourse) {
-        return res.status(500).json(new ApiError(500, "Something went wrong while adding course to database", ["Something went wrong while adding course to database"]));
-    }
-
-    // Asynchronously process notifications
-    processNotifications(createdCourse);
-
-    // Return response immediately
-    return res.status(201).json(new ApiResponse(200, { course: createdCourse }, "Course added successfully"));
-});
-
-async function processNotifications(course) {
-    const owner = await User.findById(course.owner);
-    const content = `Prof. ${owner.fullname} added new course ${course.title}`;
-    const listOfStudents = await User.find({ userrole: 2 });
-
-    for (const student of listOfStudents) {
-        const notification = await Notification.create({ content });
-        await Notification.updateOne({ _id: notification._id }, { $push: { from: course.owner, to: student._id } });
-    }
-}
+})
 
 const getCourseById = asyncHandler(async (req, res) => {
     const { courseId } = req.params
