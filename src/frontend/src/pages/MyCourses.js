@@ -91,7 +91,7 @@ function MyCourses() {
 
     
   
-    if (mycourses.length === 0 && authStatus===true) {
+    if (mycourses.length === 0 && authStatus===true && userData.userrole===2) {
         return (
           
                 <Container>
@@ -103,6 +103,19 @@ function MyCourses() {
            
         )
     }
+
+    if (mycourses.length === 0 && authStatus===true && userData.userrole===1) {
+      return (
+        
+              <Container>
+        
+  
+  <span class="flex justify-center items-center  mt-56 text-3xl text-red-600">No Courses created by you</span>
+
+              </Container>
+         
+      )
+  }
   return (
     <div className='w-full py-8'>
         <Container>
