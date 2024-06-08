@@ -308,7 +308,7 @@ console.log("Date and Time in YYYY-MM-DD hh:mm:ss format: " + date_time);
     const year=String(dates.getFullYear())
     const dt =year+"-"+month+"-"+day
     console.log(dt)
-    const listofevents = await Event.find({date:date_yyyy_mm_dd});
+    const listofevents = await Event.find({date:date_yyyy_mm_dd}).sort({'updatedAt':-1 });
     const events=[]
     for(var i=0; i< listofevents.length; i++) {  
         //display the array elements  
