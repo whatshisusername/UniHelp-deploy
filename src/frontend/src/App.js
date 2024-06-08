@@ -12,6 +12,11 @@ function App() {
   const[error,seterror]=useState('')
   // to pass values to reducers
   const dispatch = useDispatch()
+  if (window.localStorage.getItem('loggedIn')===true){
+    dispatch(login(JSON.parse(window.localStorage.getItem('loggedinfo'))));
+    
+  }
+
 
   // using getcurrentuser function from appwrite/auth.js class,authService is object that was exported
   // in finally as everything in useeffect is executed ,inside finally is also executed everytime
@@ -20,6 +25,9 @@ function App() {
         console.log(response);
         setresponse(response.data.data)
         dispatch(login(response.data.data))
+        window.localStorage.setItem('loggedinfo',JSON.stringify(response?.data?.data));
+        console.log("loggedinfo local=",JSON.parse(window.localStorage.getItem('loggedinfo')));
+        dispatch(login(JSON.parse(window.localStorage.getItem('loggedinfo'))));
         seterror('')
       })
       .catch(function (error) {

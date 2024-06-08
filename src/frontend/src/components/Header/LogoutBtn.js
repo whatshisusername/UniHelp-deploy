@@ -16,9 +16,10 @@ function LogoutBtn() {
           console.log(response);
           setresponse(response?.data?.message)
           dispatch(logout())
-          // window.localStorage.setItem("loggedIn",false);
-          // window.localStorage.setItem('userinfo',JSON.stringify(''));
-          // console.log("userinfo local=",JSON.parse(window.localStorage.getItem('userinfo')));
+          window.localStorage.setItem("loggedIn",false);
+          window.localStorage.removeItem("userinfo");
+          window.localStorage.removeItem("loggedinfo");
+        
      
           navigate('/')
           seterror('')
