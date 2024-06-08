@@ -98,10 +98,12 @@ const createACourse = asyncHandler(async (req, res) => {
     for(var i=0; i< listofstudents.length; i++) {  
         const notification = await Notification.create({
             content:content,
+            from:[createdcourse.owner],
+            to: [listofstudents[i]._id]
     
          })
-         await Notification.updateOne({ _id: notification._id }, { $push: { from: createdcourse.owner } })
-     await Notification.updateOne({ _id: notification._id }, { $push: { to: listofstudents[i]._id } })
+    //      await Notification.updateOne({ _id: notification._id }, { $push: { from: createdcourse.owner } })
+    //  await Notification.updateOne({ _id: notification._id }, { $push: { to: listofstudents[i]._id } })
             
          
                 
