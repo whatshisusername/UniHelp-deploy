@@ -137,6 +137,8 @@ export default function PostCard() {
     const [filename,setfilename]=useState("")
     const [notes,setnotes]=useState([])
 
+    const [courseowner,setcourseowner] = useState('')
+
     const navigate=useNavigate();
 
     useEffect(() => {
@@ -145,6 +147,7 @@ export default function PostCard() {
                     .then(response => {
                        
                         setCourse(response?.data?.data?.course);
+                        setcourseowner(response?.data?.data?.owner);
                         setresponse(response?.data?.message)
                         seterror('');
                     })
@@ -263,7 +266,7 @@ export default function PostCard() {
                 
             })
             .catch(error => {
-                seterror('Error fetching notess. Please try again later.');
+                seterror(response?.data?.data?.errors[0]);
                 console.error("Error notes students:", error);
                 setresponse('');
             });
@@ -622,7 +625,7 @@ export default function PostCard() {
 
           {activeTab === "students" && (
     <div>
-        <span className="block mb-4">Teacher: {course.owner}</span>
+        <span className="block mb-4">Teacher: PROF. {courseowner}</span>
         <div className="bg-white rounded-md overflow-hidden">
             <h2 className="text-lg font-bold px-4 py-2 bg-blue-500 text-white">Students Enrolled:{students.length}</h2>
             <div className="p-4">
@@ -633,7 +636,7 @@ export default function PostCard() {
                                 <div>
                                     <p className="text-lg">{student.name} - {student.regid}</p>
                                 </div>
-                                {userData?.userrole === 1 && (
+                                {userData?._id===course.owner && (
                                     <button className="bg-red-500 text-white px-4 py-2 rounded-md" onClick={() => removeStudent(student.studentobjectid)}>Remove</button>
                                 )}
                             </li>
@@ -653,9 +656,12 @@ export default function PostCard() {
     <div>
         <span className="block mb-4">Course: {course.title}</span>
         <div className="bg-white rounded-md overflow-hidden">
-            <h2 className="text-lg font-bold px-4 py-2 bg-blue-500 text-white">Material:{notes.length}</h2>
+            
             <div className="p-4">
-                {notes.length > 0 ? (
+                {notes.length > 0 && (joined===true|| userData?._id===course.owner || userData.userrole===1)? (
+                    <div className="bg-white rounded-md overflow-hidden">
+                    <h2 className="text-lg font-bold px-4 py-2 bg-blue-500 text-white">Material:{notes.length}</h2>
+                    <div className="p-4">
                     <ul>
                         {notes.map((note) => (
                             <li key={note._id} className="flex justify-between items-center py-2 border-b">
@@ -666,9 +672,15 @@ export default function PostCard() {
                             </li>
                         ))}
                     </ul>
-                ) : (
-                    <p>No notes yet.</p>
+                    </div>
+                    </div>
+                ) : ( 
+                    <div>
+                    <p className="text-lg text-blue-500">   {joined || userData?._id===course.owner || userData.userrole===1 ? 'No notes posted yet' : 'Join Course to get notes'}</p>
+                </div>
                 )}
+
+                
 
             </div>
         </div>

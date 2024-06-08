@@ -130,11 +130,16 @@ const getCourseById = asyncHandler(async (req, res) => {
 
     }
 
+    const owner = await User.findById(course.owner)
+
+
     return res
     .status(200)
     .json(new ApiResponse(
         200,
-        {course:course},
+        {course:course,
+        owner:owner.fullname
+        },
         "course fetched successfully"
     ))
 })
