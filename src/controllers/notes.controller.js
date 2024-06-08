@@ -65,27 +65,27 @@ const createnotes = asyncHandler(async (req, res) => {
     }
 
 
-    const course =await Course.findById(courseId)
+    // const course =await Course.findById(courseId)
 
-    const owner= await User.findById(course.owner)
+    // const owner= await User.findById(course.owner)
 
 
-    const content = "Prof. "+owner.fullname+" added new notes "+creatednotes.filename;
+    // const content = "Prof. "+owner.fullname+" added new notes "+creatednotes.filename;
 
-    const listofstudents = await User.find({userrole:2})
+    // const listofstudents = await User.find({userrole:2})
 
-    for(var i=0; i< listofstudents.length; i++) {  
-        const notification = await Notification.create({
-            content:content,
+    // for(var i=0; i< listofstudents.length; i++) {  
+    //     const notification = await Notification.create({
+    //         content:content,
     
-         })
-         await Notification.updateOne({ _id: notification._id }, { $push: { from: course.owner } })
-     await Notification.updateOne({ _id: notification._id }, { $push: { to: listofstudents[i]._id } })
+    //      })
+    //      await Notification.updateOne({ _id: notification._id }, { $push: { from: course.owner } })
+    //  await Notification.updateOne({ _id: notification._id }, { $push: { to: listofstudents[i]._id } })
             
          
                 
             
-        }
+    //     }
 
 
 
