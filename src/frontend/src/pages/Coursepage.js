@@ -649,13 +649,13 @@ export default function PostCard() {
 )}
 
 
-{activeTab === "notes" && (joined===true || userData?._id===course.owner || userData.userrole===1) (
+{activeTab === "notes"  (
     <div>
         <span className="block mb-4">Course: {course.title}</span>
         <div className="bg-white rounded-md overflow-hidden">
             <h2 className="text-lg font-bold px-4 py-2 bg-blue-500 text-white">Material:{notes.length}</h2>
             <div className="p-4">
-                {notes.length > 0 ? (
+                {notes.length > 0 && (joined===true || userData?._id===course.owner || userData.userrole===1)? (
                     <ul>
                         {notes.map((note) => (
                             <li key={note._id} className="flex justify-between items-center py-2 border-b">
