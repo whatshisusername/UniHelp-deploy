@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { login } from '../store/authSlice.js';
 import { useNavigate } from 'react-router-dom';
-
+import secureLocalStorage from 'react-secure-storage';
 function UpdateAvatar() {
   const navigate = useNavigate();
   const [error, setError] = useState('');
@@ -35,6 +35,8 @@ function UpdateAvatar() {
       .then(function (response) {
         setResponse(response?.data?.message);
         dispatch(login(response?.data?.data?.user));
+        secureLocalStorage.setItem("ui", response?.data?.data?.user);
+        console.log('ui=',secureLocalStorage.getItem("ui"));
         setError('');
       })
       .catch(function (error) {

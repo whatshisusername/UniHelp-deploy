@@ -9,6 +9,7 @@ import axios from "axios"
 import validator from 'validator'
 import { useSelector } from 'react-redux'
 import UpdateAvatar from './UpdataAvatar.js'
+import secureLocalStorage from 'react-secure-storage'
 function UpdateDetails() {
     const navigate = useNavigate()
     const [error, setError] = useState("")
@@ -54,7 +55,10 @@ function UpdateDetails() {
         console.log(response);
         setresponse(response?.data?.message)
         
-        dispatch(login(response.data.data.user))
+        dispatch(login(response?.data?.data?.user));
+        secureLocalStorage.setItem("ui", response?.data?.data?.user);
+        console.log('ui=',secureLocalStorage.getItem("ui"));
+
         setError('')
         setediting(false)
         // navigate('/')
