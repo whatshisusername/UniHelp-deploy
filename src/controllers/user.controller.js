@@ -5,6 +5,7 @@ import {User} from '../models/user.model.js'
 import {uploadOnCloudinary} from '../utils/cloudinary.js'
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose'
+
 const generateAccessandRefreshToken = async(userId) =>{
     try {
         const user = await User.findById(userId)
@@ -375,6 +376,7 @@ const loginUser = asyncHandler(async (req,res)=>{
     const {accessToken,refreshToken}= await generateAccessandRefreshToken(userindb._id)
 
     console.log("return acess token","refresh",refreshToken,"accesstoken",accessToken)
+
     
     const loggedinuser = await User.findById(userindb._id).select("-password -refreshToken")
 

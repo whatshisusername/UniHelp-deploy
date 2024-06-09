@@ -5,6 +5,7 @@ import {login, logout} from "./store/authSlice"
 import { Outlet } from 'react-router-dom'
 import axios from 'axios'
 import { Header } from './components'
+import secureLocalStorage from 'react-secure-storage'
 function App() {
   // creating a loading variable to show loading page
   const [loading, setLoading] = useState(true)
@@ -12,10 +13,10 @@ function App() {
   const[error,seterror]=useState('')
   // to pass values to reducers
   const dispatch = useDispatch()
-  // if (window.localStorage.getItem('loggedIn')===true){
-  //   dispatch(login(JSON.parse(window.localStorage.getItem('loggedinfo'))));
+  if (secureLocalStorage.getItem('userinfo')){
+    dispatch(login(secureLocalStorage.getItem('userinfo')));
     
-  // }
+  }
 
 
   // using getcurrentuser function from appwrite/auth.js class,authService is object that was exported

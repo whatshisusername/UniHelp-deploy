@@ -24,6 +24,8 @@ export const verifyJWT = asyncHandler(async(req,_,next)=> {
 
         const decodedtoken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
 
+        console.log("decoded tokens",decodedtoken);
+
         console.log("out jwt")
         // decodedtoken will have fields like id,email,password,username created in generateaccesstoken in user.model
 

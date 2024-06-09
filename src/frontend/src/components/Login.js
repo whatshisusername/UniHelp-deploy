@@ -3,7 +3,8 @@ import {Link, useNavigate} from 'react-router-dom'
 import {useDispatch} from "react-redux"
 import {useForm} from "react-hook-form"
 import { login as authLogin } from '../store/authSlice'
-import axios from 'axios'
+import axios from 'axios';
+import  secureLocalStorage  from  "react-secure-storage";
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -31,6 +32,8 @@ function Login() {
             console.log(response);
             setresponse(response?.data?.message|| response?.data?.errors[0]);
             dispatch(authLogin(response?.data?.data?.user));
+            secureLocalStorage.setItem("userinfo", response?.data?.data?.user);
+            console.log('userinfo=',secureLocalStorage.getItem("userinfo"));
             // window.localStorage.setItem("loggedIn",true);
             // window.localStorage.setItem('userinfo',JSON.stringify(response?.data?.data?.user));
             // console.log("userinfo local=",JSON.parse(window.localStorage.getItem('userinfo')));

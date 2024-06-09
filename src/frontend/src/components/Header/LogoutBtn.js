@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux'
 import {Link, useNavigate} from 'react-router-dom'
 import {logout} from '../../store/authSlice'
 import axios from 'axios'
+import secureLocalStorage from 'react-secure-storage'
 function LogoutBtn() {
     const dispatch = useDispatch()
     const[response,setresponse]=useState("")
@@ -16,6 +17,7 @@ function LogoutBtn() {
           console.log(response);
           setresponse(response?.data?.message)
           dispatch(logout())
+          secureLocalStorage.removeItem('userinfo');
           // window.localStorage.removeItem("userinfo");
           // window.localStorage.removeItem("loggedinfo");
           // window.localStorage.removeItem('loggedIn');
