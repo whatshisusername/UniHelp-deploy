@@ -52,7 +52,7 @@ function App() {
         dispatch(logout())
       })
     })().finally(() => setLoading(false))
-  }, [])
+  }, [userData1]);
   
   // 
   return !loading ? (
