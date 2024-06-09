@@ -6,6 +6,7 @@ import { Outlet } from 'react-router-dom'
 import axios from 'axios'
 import { Header } from './components'
 import secureLocalStorage from 'react-secure-storage'
+import { useSelector } from 'react-redux'
 function App() {
   // creating a loading variable to show loading page
   const [loading, setLoading] = useState(true)
@@ -13,10 +14,15 @@ function App() {
   const[error,seterror]=useState('')
   // to pass values to reducers
   const dispatch = useDispatch()
-  if (secureLocalStorage.getItem('ui')){
+  if (secureLocalStorage.getItem('ui')!=null){
     dispatch(login(secureLocalStorage.getItem('ui')));
-    
+    console.log(secureLocalStorage.getItem('ui'));
+   
   }
+  console.log(secureLocalStorage.getItem('ui'));
+  const userData1 = useSelector((state) => state.auth.userData);
+  console.log("USERDATA",userData1)
+
 
 
   // using getcurrentuser function from appwrite/auth.js class,authService is object that was exported
@@ -26,10 +32,13 @@ function App() {
         console.log(response);
         setresponse(response.data.data)
         dispatch(login(response.data.data))
-        if (secureLocalStorage.getItem('ui')){
+        if (secureLocalStorage.getItem('ui')!=null){
           dispatch(login(secureLocalStorage.getItem('ui')));
           
+          
+          
         }
+
 
         // window.localStorage.setItem('loggedinfo',JSON.stringify(response?.data?.data));
         // console.log("loggedinfo local=",JSON.parse(window.localStorage.getItem('loggedinfo')));

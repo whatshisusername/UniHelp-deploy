@@ -386,7 +386,8 @@ const loginUser = asyncHandler(async (req,res)=>{
     // doing this cookie is just readable by frontend cannot modify it,server can modify it
     const options ={
         httpOnly:true,
-        secure:true
+        secure:true,
+        expires: new Date(Date.now() + 86400000)
     }
 
     // .cookie used to add cookie in response
