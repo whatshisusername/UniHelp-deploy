@@ -5,7 +5,10 @@ import axios from 'axios'
 import {  useRef, useEffect } from 'react';
 import LogoutBtn from './Header/LogoutBtn';
 import { useNavigate } from 'react-router-dom'
-    
+import secureLocalStorage from 'react-secure-storage'
+import {login, logout} from "../store/authSlice"
+
+
 function UserIcon() {
       const [isOpen, setIsOpen] = useState(false);
       const dropdownRef = useRef(null);
@@ -15,6 +18,7 @@ function UserIcon() {
     const[error,seterror]=useState("")
     const navigate=useNavigate()
     const [clickingavatar,setclickingavatar]=useState(false);
+    const dispatch = useDispatch()
 
     const toggledropdown = ()=>{
         setIsOpen(!isOpen)
@@ -35,6 +39,28 @@ function UserIcon() {
                 navigate('/login')
             }
     }
+
+   
+      axios.get('/api/v1/users/current-user').then(function(response) {
+        console.log(response);
+        setresponse(response.data.data)
+        dispatch(login(response.data.data))
+        if (secureLocalStorage.getItem('ui')!=null){
+          dispatch(login(secureLocalStorage.getItem('ui')));}
+
+
+        // window.localStorage.setItem('loggedinfo',JSON.stringify(response?.data?.data));
+        // console.log("loggedinfo local=",JSON.parse(window.localStorage.getItem('loggedinfo')));
+        // dispatch(login(JSON.parse(window.localStorage.getItem('loggedinfo'))));
+        seterror('')
+      })
+      .catch(function (error) {
+        // console.log(error.response.data.errors[0]);
+        seterror(error?.response?.data)
+        setresponse('')
+        dispatch(logout())
+      })
+    
    
     
       return (
