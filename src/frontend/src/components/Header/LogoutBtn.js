@@ -17,7 +17,7 @@ function LogoutBtn() {
           console.log(response);
           setresponse(response?.data?.message)
           dispatch(logout())
-          secureLocalStorage.removeItem('userinfo');
+          secureLocalStorage.removeItem('ui');
           // window.localStorage.removeItem("userinfo");
           // window.localStorage.removeItem("loggedinfo");
           // window.localStorage.removeItem('loggedIn');

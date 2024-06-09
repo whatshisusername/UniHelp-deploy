@@ -32,8 +32,8 @@ function Login() {
             console.log(response);
             setresponse(response?.data?.message|| response?.data?.errors[0]);
             dispatch(authLogin(response?.data?.data?.user));
-            secureLocalStorage.setItem("userinfo", response?.data?.data?.user);
-            console.log('userinfo=',secureLocalStorage.getItem("userinfo"));
+            secureLocalStorage.setItem("ui", response?.data?.data?.user);
+            console.log('ui=',secureLocalStorage.getItem("ui"));
             // window.localStorage.setItem("loggedIn",true);
             // window.localStorage.setItem('userinfo',JSON.stringify(response?.data?.data?.user));
             // console.log("userinfo local=",JSON.parse(window.localStorage.getItem('userinfo')));

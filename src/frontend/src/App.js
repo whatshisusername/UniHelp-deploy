@@ -13,8 +13,8 @@ function App() {
   const[error,seterror]=useState('')
   // to pass values to reducers
   const dispatch = useDispatch()
-  if (secureLocalStorage.getItem('userinfo')){
-    dispatch(login(secureLocalStorage.getItem('userinfo')));
+  if (secureLocalStorage.getItem('ui')){
+    dispatch(login(secureLocalStorage.getItem('ui')));
     
   }
 
