@@ -51,7 +51,7 @@ function AddCourse() {
         setsemester('')
         setcoursenumber('')
         setbranch('')
-        dispatch(login(response.data.data.course))
+        // dispatch(login(response.data.data.course))
         seterror('')
         // navigate('/')
       })

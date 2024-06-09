@@ -26,6 +26,11 @@ function App() {
         console.log(response);
         setresponse(response.data.data)
         dispatch(login(response.data.data))
+        if (secureLocalStorage.getItem('ui')){
+          dispatch(login(secureLocalStorage.getItem('ui')));
+          
+        }
+
         // window.localStorage.setItem('loggedinfo',JSON.stringify(response?.data?.data));
         // console.log("loggedinfo local=",JSON.parse(window.localStorage.getItem('loggedinfo')));
         // dispatch(login(JSON.parse(window.localStorage.getItem('loggedinfo'))));
