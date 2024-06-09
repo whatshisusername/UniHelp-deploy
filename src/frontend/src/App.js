@@ -47,6 +47,8 @@ function App() {
       })
       .catch(function (error) {
         // console.log(error.response.data.errors[0]);
+        console.log("error",error);
+        secureLocalStorage.removeItem('ui');
         seterror(error?.response?.data)
         setresponse('')
         dispatch(logout())
