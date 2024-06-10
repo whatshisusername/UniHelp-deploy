@@ -8,7 +8,7 @@ dotenv.config({
     path: './.env'
 });
 
-// running our mongodb connect function declared in db/index.js used to connect to mongodatabase
+// running our mongodb connect function declared in db/index.js used to connect to mongodatabasesdf
 connectDB()
 .then(
     
