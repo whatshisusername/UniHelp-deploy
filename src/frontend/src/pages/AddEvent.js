@@ -90,7 +90,7 @@ function AddEvent() {
     setDescription("Loading your description \n It might take upto 10 seconds");
     try {
       const response = await axios({
-        url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyCpzGSyTEUtip5KocQjsc4eZsDlyND6oP4"
+        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`
          ,
         method: "post",
         data: {
