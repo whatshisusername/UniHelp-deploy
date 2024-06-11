@@ -41,26 +41,29 @@ function UserIcon() {
     }
 
    
-      axios.get('/api/v1/users/current-user').then(function(response) {
-        console.log(response);
-        setresponse(response.data.data)
-        dispatch(login(response.data.data))
-        if (secureLocalStorage.getItem('ui')!=null){
-          dispatch(login(secureLocalStorage.getItem('ui')));}
-
-
-        // window.localStorage.setItem('loggedinfo',JSON.stringify(response?.data?.data));
-        // console.log("loggedinfo local=",JSON.parse(window.localStorage.getItem('loggedinfo')));
-        // dispatch(login(JSON.parse(window.localStorage.getItem('loggedinfo'))));
-        seterror('')
-      })
-      .catch(function (error) {
-        // console.log(error.response.data.errors[0]);
-        seterror(error?.response?.data)
-        setresponse('')
-        dispatch(logout())
-      })
-    
+    useEffect(() => {
+      axios.get('/api/v1/users/current-user')
+        .then(function(response) {
+          console.log(response);
+          setresponse(response.data.data);
+          dispatch(login(response.data.data));
+          if (secureLocalStorage.getItem('ui') != null) {
+            dispatch(login(secureLocalStorage.getItem('ui')));
+          }
+  
+          // Uncomment if needed
+          // window.localStorage.setItem('loggedinfo', JSON.stringify(response?.data?.data));
+          // console.log("loggedinfo local=", JSON.parse(window.localStorage.getItem('loggedinfo')));
+          // dispatch(login(JSON.parse(window.localStorage.getItem('loggedinfo'))));
+          seterror('');
+        })
+        .catch(function (error) {
+          // console.log(error.response.data.errors[0]);
+          seterror(error?.response?.data);
+          setresponse('');
+          dispatch(logout());
+        });
+    }, []);
    
     
       return (
