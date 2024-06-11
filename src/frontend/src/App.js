@@ -7,6 +7,7 @@ import axios from 'axios'
 import { Header } from './components'
 import secureLocalStorage from 'react-secure-storage'
 import { useSelector } from 'react-redux'
+
 function App() {
   // creating a loading variable to show loading page
   const [loading, setLoading] = useState(true)

@@ -27,6 +27,7 @@ import EventsHome from './pages/EventsHome.js'
 import OtherEvents from './pages/OtherEvents.js'
 import Eventpage from './pages/Eventpage.js'
 import MyEvents from './pages/MyEvents.js'
+
 const router = createBrowserRouter([
   {
     path: "/",
