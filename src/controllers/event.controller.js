@@ -502,7 +502,7 @@ const getEventById = asyncHandler(async (req, res) => {
 
 const getmyevents = asyncHandler(async (req, res) => {
     // Retrieve all courses from the database
-    const listofevents = await Event.find({owner:req.user._id});
+    const listofevents = await Event.find({owner:req.user._id}).sort({'updatedAt':-1 });
    const events=[]
     for(var i=0; i< listofevents.length; i++) {  
         //display the array elements  
