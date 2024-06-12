@@ -25,42 +25,57 @@ const navItems = [
     {
       name: 'Home',
       slug: "/",
-      active: true
+      active: true,
+      currentactive:('/'===window.location.pathname)
     }, 
     {
       name: "Login",
       slug: "/login",
       active: !authStatus,
+      currentactive:("/login"===window.location.pathname)
   },
   {
       name: "Signup",
       slug: "/student-signup",
       active: !authStatus,
+      currentactive:("/student-signup"===window.location.pathname)
   },
   {
     name: "Teacher Signup",
     slug: "/teacher-signup",
     active: !authStatus,
+    currentactive:("/teacher-signup"===window.location.pathname)
 },
 
   {
       name: "Courses",
       slug: "/all-courses",
       active: authStatus,
+      currentactive:("/all-courses"===window.location.pathname)
   },
   {
     name: "Add Course",
     slug: "/add-course",
     active: (authStatus && userData?.userrole==1),
+    currentactive:("/add-course"===window.location.pathname)
 },
 {
   name: "My Courses",
   slug: "/my-courses",
   active: authStatus,
+  currentactive:("/my-courses"===window.location.pathname)
 },
 
   ]
 
+  const url = window.location.href;
+  const pathname = window.location.pathname;
+  const protocol = window.location.protocol;
+  const hostname = window.location.hostname;
+  console.log("url",url)
+  console.log("pathname",pathname)
+  console.log("protocol",protocol)
+  console.log("hostname",hostname)
  
 
   return (
@@ -78,7 +93,7 @@ const navItems = [
               <li key={item.name}>
                 <button
                 onClick={() => navigate(item.slug)}
-                className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
+                className={`inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full ${ item.currentactive? 'bg-red-300' : ''}`}
                 
                 >{item.name}
                 </button>

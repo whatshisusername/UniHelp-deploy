@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Container, CourseCard } from '../components'
 import { useSelector } from "react-redux";
 import axios from 'axios'
+import { useParams } from 'react-router-dom';
 
 function MyCourses() {
     const [mycourses, setmycourses] = useState([])
@@ -87,7 +88,14 @@ function MyCourses() {
     }
   },[semester,branch])
     
-
+  const url = window.location.href;
+  const pathname = window.location.pathname;
+  const protocol = window.location.protocol;
+  const hostname = window.location.hostname;
+  console.log("url",url)
+  console.log("pathname",pathname)
+  console.log("protocol",protocol)
+  console.log("hostname",hostname)
 
     
   
@@ -120,6 +128,9 @@ function MyCourses() {
     <div className='w-full py-8'>
         <Container>
           {/* filters */}
+          <div className="bg-white rounded-md overflow-hidden">
+            <h2 className="text-lg font-bold px-4 py-2 bg-blue-500 text-white">My Courses</h2>
+            </div>
 
   <label for="semester" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Semester</label>
   <select id="semester" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={semester} onChange={(e)=>{
