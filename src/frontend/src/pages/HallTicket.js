@@ -157,7 +157,7 @@ if(mycourses.length>0){
     <div class="p-8 flex flex-col items-center justify-center relative">
     <h1 class="text-3xl font-bold text-center mb-4" id="heading">EXAMINATION ADMIT CARD</h1>
     <div id="content" class="ml-0 mb-4 relative mr-96">
-        <img src={userData.avatar} alt="Example Image" id="myImage" class="absolute  top-1 left-96 w-20 h-15 rounded-md shadow-md mb-96"/>
+        <img src={userData.avatar.replace('http://', 'https://')} alt="Example Image" id="myImage" class="absolute  top-1 left-96 w-20 h-15 rounded-md shadow-md mb-96"/>
         <ul class="list-none">
             <li class="mb-2"><strong>REGISTRATION ID:</strong> {userData.registrationId}</li>
             <li class="mb-2"><strong>STUDENT NAME:</strong> {userData.fullname}</li>
