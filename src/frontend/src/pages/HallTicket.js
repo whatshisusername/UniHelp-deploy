@@ -39,21 +39,37 @@ const [semcourses, setsemcourses] = useState([])
   }}
 ,[mycourses])
 
-console.log("going to hit examdates")
-  axios.get('/api/v1/courses/examdates')
-  .then(function (response) {
-    console.log(response);
-    console.log("examdates",response?.data?.data?.examdates)
-    setexamdates(response?.data?.data?.examdates)
-    setresponse(response?.data?.message)
-    seterror('')
-  })
-  .catch(function (error) {
-    console.log(error?.response?.data?.errors[0]);
-    seterror(error?.response?.data?.errors[0])
-    setresponse('')
-  });
+// console.log("going to hit examdates")
+//   axios.get('/api/v1/courses/examdates')
+//   .then(function (response) {
+//     console.log(response);
+//     console.log("examdates",response?.data?.data?.examdates)
+//     setexamdates(response?.data?.data?.examdates)
+//     setresponse(response?.data?.message)
+//     seterror('')
+//   })
+//   .catch(function (error) {
+//     console.log(error?.response?.data?.errors[0]);
+//     seterror(error?.response?.data?.errors[0])
+//     setresponse('')
+//   });
 
+useEffect(() => {
+  console.log("going to hit examdates");
+  axios.get('/api/v1/courses/examdates')
+      .then(function (response) {
+          console.log(response);
+          console.log("examdates", response?.data?.data?.examdates);
+          setexamdates(response?.data?.data?.examdates);
+          setresponse(response?.data?.message);
+          seterror('');
+      })
+      .catch(function (error) {
+          console.log(error?.response?.data?.errors[0]);
+          seterror(error?.response?.data?.errors[0]);
+          setresponse('');
+      });
+}, [examdates]); 
 
 
 
