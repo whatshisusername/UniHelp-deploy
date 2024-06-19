@@ -16,6 +16,7 @@ import {
     searchbymycourses,
     searchbymycoursesteacher,
     searchbytitle,
+    examdates,
    
 } from "../controllers/course.controller.js"
 import {verifyJWT} from "../middlewares/auth.middleware.js"
@@ -71,7 +72,7 @@ router.route("/searchbymycoursesteacher").get(searchbymycoursesteacher);
 
 router.route("/searchbybranch/:branch").get(searchbybranch);
 
-
+router.route("/examdates").get(examdates);
 
 router.route("/searchbyowner").get(searchbyowner);
 router.route("/searchbystudent").get(searchbystudent);

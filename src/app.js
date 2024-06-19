@@ -61,6 +61,10 @@ app.get("/student-signup", (req, res) => {
   app.get("/my-courses", (req, res) => {
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   });
+  app.get("/hallticket", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+
   app.get("/add-course", (req, res) => {
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   });

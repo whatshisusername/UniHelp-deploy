@@ -27,6 +27,7 @@ import EventsHome from './pages/EventsHome.js'
 import OtherEvents from './pages/OtherEvents.js'
 import Eventpage from './pages/Eventpage.js'
 import MyEvents from './pages/MyEvents.js'
+import HallTicket from './pages/HallTicket.js'
 
 const router = createBrowserRouter([
   {
@@ -90,6 +91,14 @@ const router = createBrowserRouter([
   element: (
       
           <AddCourse />
+     
+  ),
+},
+{
+  path: "/hallticket",
+  element: (
+      
+          <HallTicket />
      
   ),
 },

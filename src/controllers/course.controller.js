@@ -413,6 +413,61 @@ const searchbystudent=asyncHandler(async(req,res)=>{
 })
 
 
+// courses joined by student
+const examdates=asyncHandler(async(req,res)=>{
+    console.log(req.user.fullname)
+    console.log("requserid=",req.user._id.valueOf())
+
+
+    const listofcourses = await Course.find( {students : {$in:[req.user._id.valueOf()]}} )
+
+    const numberOfExams=listofcourses.length;
+    const examDates = [];
+    const currentDate = new Date();
+
+    // Utility function to add days to a date
+    function addDays(date, days) {
+        const result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
+    }
+
+    // Utility function to format date as DD/MM/YYYY
+    function formatDate(date) {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    }
+
+    // Initialize date counter to current date
+    let dateCounter = currentDate;
+
+    // Generate exam dates
+    while (examDates.length < numberOfExams) {
+        // Skip Sundays
+        if (dateCounter.getDay() !== 0) {
+            examDates.push(formatDate(dateCounter));
+        }
+        // Move to the next day
+        dateCounter = addDays(dateCounter, 1);
+    }
+
+
+    examDates.forEach(date => console.log(date));
+
+
+
+
+
+
+
+   
+    return res.status(200).json(new ApiResponse(200, {examdates:examDates}, "exam dates received"));
+
+})
+
+
 // for student n teachers-- all courses filter
 // course search filter filter on semester and branch
 const searchbysemester = asyncHandler(async(req, res) => {
@@ -643,7 +698,8 @@ export {
     searchbystudent,
     searchbymycourses,
     searchbymycoursesteacher,
-    searchbytitle
+    searchbytitle,
+    examdates
    
  
 }

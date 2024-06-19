@@ -65,7 +65,12 @@ const navItems = [
   active: authStatus,
   currentactive:("/my-courses"===window.location.pathname)
 },
-
+{
+  name: "Hall Ticket",
+  slug: "/hallticket",
+  active: (authStatus && userData?.userrole==2),
+  currentactive:("/hallticket"===window.location.pathname)
+},
   ]
 
   const url = window.location.href;
