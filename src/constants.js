@@ -1,2 +1,2 @@
 // this is our database name
-export const DB_NAME="courseproject"
+export const DB_NAME="marksheetmanagement"

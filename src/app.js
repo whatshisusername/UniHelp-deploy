@@ -92,8 +92,16 @@ app.get("/student-signup", (req, res) => {
   app.get("/event/:eventId", (req, res) => {
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   });
-
-
+  app.get("/marksheet", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+  app.get("/applications", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+  
+  app.get("/applicant/:applicantid", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
 
 
 // this is to configure how much json data will be accepted by server
@@ -122,6 +130,10 @@ import notificationRouter from './routes/notification.routes.js'
 import eventRouter from './routes/event.routes.js'
 
 import notesRouter from './routes/notes.routes.js'
+
+import applicationRouter from './routes/application.routes.js'
+
+import marksheetRouter from './routes/marksheet.routes.js'
 // route declaration
 
 
@@ -137,5 +149,8 @@ app.use('/api/v1/events',eventRouter)
 
 app.use('/api/v1/notes',notesRouter)
 
+app.use('/api/v1/applications',applicationRouter)
+
+app.use('/api/v1/marksheets',marksheetRouter)
 
 export {app}

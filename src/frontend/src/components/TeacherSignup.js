@@ -119,7 +119,7 @@ function TeacherSignup() {
                     </span>
                 </div>
                <img className='ml-12 justify-center bg-black border-2 border-black w-fit h-fit'src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEzFkpGnI5u_psM1gy5zZQrgHQ5yJeOaY-epvGPVh9Rg&s'/>
-                <h2 className="text-center  text-2xl font-bold leading-tight ">Teacher's SignUp</h2>
+                <h2 className="text-center  text-2xl font-bold leading-tight ">Exam Department SignUp</h2>
                 
                 <p className="mt-2 text-center text-base text-black/60">
                     Already have an account?&nbsp;

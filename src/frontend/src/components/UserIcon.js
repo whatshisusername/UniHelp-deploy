@@ -77,7 +77,7 @@ function UserIcon() {
            onClick={toggledropdown}
           >
 
-            {userData.userrole==1?( <span className="ml-2">Teacher</span>):(<span className="ml-2">Student</span>)}
+            {userData.userrole==1?( <span className="ml-2">Exam Department</span>):(<span className="ml-2">Student</span>)}
             <span className="ml-2">{userData.fullname}</span>
             <span className="ml-2">{userData.registrationId}</span>
           </button>

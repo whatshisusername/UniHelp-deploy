@@ -41,35 +41,47 @@ const navItems = [
       currentactive:("/student-signup"===window.location.pathname)
   },
   {
-    name: "Teacher Signup",
+    name: "Exam Department signup",
     slug: "/teacher-signup",
     active: !authStatus,
     currentactive:("/teacher-signup"===window.location.pathname)
 },
 
-  {
-      name: "Courses",
-      slug: "/all-courses",
-      active: authStatus,
-      currentactive:("/all-courses"===window.location.pathname)
-  },
-  {
-    name: "Add Course",
-    slug: "/add-course",
-    active: (authStatus && userData?.userrole==1),
-    currentactive:("/add-course"===window.location.pathname)
-},
+  // {
+  //     name: "Courses",
+  //     slug: "/all-courses",
+  //     active: (authStatus&& userData.registrationId!=211070007),
+  //     currentactive:("/all-courses"===window.location.pathname)
+  // },
+//   {
+//     name: "Add Course",
+//     slug: "/add-course",
+//     active: (authStatus && userData?.userrole==1&& userData.registrationId!=211070007),
+//     currentactive:("/add-course"===window.location.pathname)
+// },
+// {
+//   name: "My Courses",
+//   slug: "/my-courses",
+//   active: (authStatus&& userData.registrationId!=211070007),
+//   currentactive:("/my-courses"===window.location.pathname)
+// },
+// {
+//   name: "Hall Ticket",
+//   slug: "/hallticket",
+//   active: (authStatus && userData?.userrole==2),
+//   currentactive:("/hallticket"===window.location.pathname)
+// },
 {
-  name: "My Courses",
-  slug: "/my-courses",
-  active: authStatus,
-  currentactive:("/my-courses"===window.location.pathname)
-},
-{
-  name: "Hall Ticket",
-  slug: "/hallticket",
+  name: "Marksheet",
+  slug: "/marksheet",
   active: (authStatus && userData?.userrole==2),
-  currentactive:("/hallticket"===window.location.pathname)
+  currentactive:("/marksheet"===window.location.pathname)
+},
+{
+  name: "Applications",
+  slug: "/applications",
+  active: (authStatus && userData?.userrole==1 && userData.registrationId===211070007 ),
+  currentactive:("/applications"===window.location.pathname)
 },
   ]
 
@@ -84,7 +96,7 @@ const navItems = [
  
 
   return (
-    <header className='py-3 shadow bg-gray-300 h-20'>
+    <header className='py-3 shadow bg-gray-300 h-20 rounded-3xl mt-2'>
       <Container>
         <nav className='flex'>
          
@@ -106,12 +118,12 @@ const navItems = [
             ) : null
             )}
             
-            {authStatus && (
+            {/* {authStatus && (
               <li className='mt-2'>
                 
                 <Dropdown/>
               </li>
-            )}
+            )} */}
 
 {authStatus && (
               <li className='mt-0'>

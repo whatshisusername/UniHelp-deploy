@@ -103,7 +103,7 @@ function Notification() {
     class="sm:w-[70%] xs:w-[94%] mx-auto  bg-gray-300 p-4 rounded-md flex sm:gap-4 xs:gap-2 items-center justify-center">
 
     <button type='button' class="w-[80%] flex flex-col gap-1" id={unreadnotification.notificationid} key={unreadnotification.notificationid}
-onClick={readnotification(unreadnotification.notificationid)}>
+onClick={()=>{readnotification(unreadnotification.notificationid)}}>
         <div class="text-lg font-semibold font-serif text-black">{unreadnotification.content}</div>
      
         <p class="text-[12px] text-semibold  text-right">{unreadnotification.date}</p>

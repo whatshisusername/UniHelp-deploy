@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import { loginUser, registerUser ,logoutUser,refreshAccessToken,changePassword,
 getCurrentUser,updateAccountDetails,updateUserAvatar,updateUserCoverImage,
-getUserChannelProfile,getWatchHistory,checkuserexists,registerUser2} from '../controllers/user.controller.js';
+getUserChannelProfile,getWatchHistory,checkuserexists,registerUser2,getuser} from '../controllers/user.controller.js';
 // this our middleware we use to check on our image files coming from backend
 import { upload } from '../middlewares/multer2.middleware.js';
 import  {verifyJWT}  from '../middlewares/auth.middleware.js';
@@ -60,5 +60,8 @@ router.route("/history").get(verifyJWT, getWatchHistory)
 
 // hit when want to find current logged in user=Nishant watchhistory
 router.route("/checkuserexists").get(checkuserexists)
+
+//get user with userid
+router.route("/getuser/:userid").get(verifyJWT, getuser)
 
 export default router;

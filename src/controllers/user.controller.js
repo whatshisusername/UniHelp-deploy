@@ -554,6 +554,28 @@ const getCurrentUser = asyncHandler(async(req, res) => {
 })
 
 
+const getuser = asyncHandler(async(req, res) => {
+    const {userid} = req.params
+
+    const user=await User.findById(userid);
+
+    if(!user){
+        return res.status(404).json(
+            new ApiError(404,"user not found",["user not found"])
+         )
+
+    }
+    return res
+    .status(200)
+    .json(new ApiResponse(
+        200,
+        {user:user},
+        "User fetched successfully"
+    ))
+})
+
+
+
 const updateAccountDetails = asyncHandler(async(req, res) => {
     const {fullname, email,branch,semester} = req.body
 
@@ -808,4 +830,5 @@ export {registerUser,
     getWatchHistory,
     checkuserexists,
     registerUser2,
+    getuser,
 };

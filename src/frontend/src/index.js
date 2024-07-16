@@ -28,6 +28,9 @@ import OtherEvents from './pages/OtherEvents.js'
 import Eventpage from './pages/Eventpage.js'
 import MyEvents from './pages/MyEvents.js'
 import HallTicket from './pages/HallTicket.js'
+import Marksheet from './pages/Marksheet.js'
+import Applications from './pages/Applications.js'
+import Applicant from './pages/Applicant.js'
 
 const router = createBrowserRouter([
   {
@@ -99,6 +102,30 @@ const router = createBrowserRouter([
   element: (
       
           <HallTicket />
+     
+  ),
+},
+{
+  path: "/marksheet",
+  element: (
+      
+          <Marksheet />
+     
+  ),
+},
+{
+  path: "/applications",
+  element: (
+      
+          <Applications />
+     
+  ),
+},
+{
+  path: "/applicant/:applicantid",
+  element: (
+      
+          <Applicant />
      
   ),
 },

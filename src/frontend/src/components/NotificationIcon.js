@@ -33,7 +33,7 @@ function NotificationIcon() {
         if(error?.response?.data?.errors[0]){
           seterror(error?.response?.data?.errors[0])};
         setresponse('')
-      });},10000);
+      });},100);
 
       return () => {
         clearInterval(interval);
@@ -54,7 +54,7 @@ function NotificationIcon() {
     }} >
       <div
         class="absolute bottom-auto left-auto right-0 top-0 z-10 inline-block -translate-y-1/2 translate-x-2/4 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 whitespace-nowrap rounded-full bg-indigo-700 px-2.5 py-1 text-center align-baseline text-xs font-bold leading-none text-white">
-        0
+        {unreadnotifications.length}
       </div>
       <div
         class="flex items-center justify-center w-5 h-5 rounded-lg text-white px-8 py-6 text-center shadow-lg">
