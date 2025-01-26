@@ -1,6 +1,7 @@
 # UniHelp
-
-UniHelp is a web application designed to simplify the process of obtaining semester mark sheets. The application serves two main users: students and the exam department. It aims to make the mark sheet management process more efficient, especially for students who cannot physically visit the exam department.
+<img src="https://github.com/user-attachments/assets/c50556e7-57ae-4544-b5a1-d6c7772ebf18" width="250" height="250">
+is a web application designed to simplify the process of obtaining semester mark sheets. The application serves two main users: students and the exam department. It aims to make the mark sheet management process more efficient, especially for students who cannot physically visit the exam department.
+<!-- ![unihelp-high-resolution-logo](https://github.com/user-attachments/assets/c50556e7-57ae-4544-b5a1-d6c7772ebf18) -->
 
 ## Features
 
